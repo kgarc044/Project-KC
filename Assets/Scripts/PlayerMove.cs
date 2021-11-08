@@ -6,16 +6,24 @@ public class PlayerMove : MonoBehaviour
 {
     private float moveX;
     public int playerSpeed = 15;
+    public int playerJumpPower = 1250;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    private void FixedUpdate()
+    {
+        PMove();
+    }
     // Update is called once per frame
     void Update()
     {
-        PMove();
+            if (Input.GetButtonDown("Jump"))
+            {
+                Jump();
+            }
     }
 
     void PMove()
@@ -23,4 +31,10 @@ public class PlayerMove : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
     }
- }
+
+    void Jump()
+    {
+        //Jumping Code
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(0, playerJumpPower));
+    }
+}
