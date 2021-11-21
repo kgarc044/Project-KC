@@ -10,7 +10,19 @@ public class PlayerMove : MonoBehaviour
     public int playerSpeed = 15;
     public int playerJumpPower = 1250;
 
-    public bool FacingRight = true;
+    private bool facingRight = true;
+
+    public bool FacingRight
+    {
+        get
+        {
+            return facingRight;
+        }
+        set
+        {
+            facingRight = value;
+        }
+    }
     public bool isGrounded = true;
 
     [SerializeField]
@@ -43,15 +55,18 @@ public class PlayerMove : MonoBehaviour
 
         if (moveX < 0.0f && FacingRight)
         {
-            FacingRight = !FacingRight;
+            this.FacingRight = !FacingRight;
+            //Debug.Log(facingRight);
             transform.Rotate(0f, 180f, 0f);
         }
 
         if (moveX > 0.0f && !FacingRight)
         {
-            FacingRight = !FacingRight;
+            this.FacingRight = !FacingRight;
+            //Debug.Log(facingRight);
             transform.Rotate(0f, 180f, 0f);
         }
+
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
     }
 
