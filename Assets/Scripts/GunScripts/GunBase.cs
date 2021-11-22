@@ -9,9 +9,16 @@ public abstract class GunBase : MonoBehaviour
 
     public bool isFlipped = false;
 
-    public PlayerMove player;
-    public Transform playerTransform;
+    [SerializeField]
+    private PlayerMove player;
+    [SerializeField]
+    private Transform playerTransform;
 
+    public void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
+        playerTransform = GameObject.FindWithTag("Player").transform;
+    }
     public void FixedUpdate()
     {
         FollowPlayer(player.FacingRight);

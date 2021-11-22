@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class FlintLockPistol : GunBase
 {
-    public Transform firePoint;
-    public GameObject bulletPrefab;
+    public float cooldownTime = 1f;
+    public bool canShoot = true;
+
+    [SerializeField]
+    private Transform firePoint;
+    [SerializeField]
+    private GameObject bulletPrefab;
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            if (canShoot)
+            {
+                StartCoroutine(ShootDelay());
+            }
         }
     }
 
@@ -20,4 +28,11 @@ public class FlintLockPistol : GunBase
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
+    public IEnumerator ShootDelay()
+    {
+        Shoot();
+        canShoot = false;
+        yield return new WaitForSeconds(cooldownTime);
+        canShoot = true;
+    }
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public float speed = 20f;
-    public Rigidbody2D bulletRB;
+
+    [SerializeField]
+    private Rigidbody2D bulletRB;
 
     void Start()
     {
