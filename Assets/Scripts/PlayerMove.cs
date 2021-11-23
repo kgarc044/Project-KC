@@ -11,6 +11,10 @@ public class PlayerMove : MonoBehaviour
     public int playerJumpPower = 1250;
 
     private bool facingRight = true;
+    private bool isCasting = false;
+
+    public GameObject gun;
+    private Transform playerTransform;
 
     public bool FacingRight
     {
@@ -32,7 +36,7 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerTransform = GetComponent<Transform>();
     }
 
     private void FixedUpdate()
@@ -43,10 +47,15 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                Jump();
-            }
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            Jump();
+        }
+            
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            StartCoroutine(CastingGunSpell());
+        }
     }
 
     void PMove()
@@ -79,5 +88,25 @@ public class PlayerMove : MonoBehaviour
     void CheckForGround()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatisGround);
+    }
+
+    public IEnumerator CastingGunSpell()
+    {
+        isCasting = true;
+        SummonGun();
+        yield return new WaitForSeconds(1f);
+        isCasting = false;
+    }
+
+    void SummonGun()
+    {
+        if (facingRight)
+        {
+            Instantiate(gun, playerTransform.position + new Vector3(1.5f, 0, 0), playerTransform.rotation);
+        }
+        else
+        {
+            Instantiate(gun, playerTransform.position + new Vector3(-1.5f, 0, 0), playerTransform.rotation * new Quaternion(0,-180f,0,0));
+        }
     }
 }

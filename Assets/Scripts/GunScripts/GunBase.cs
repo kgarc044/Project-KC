@@ -7,9 +7,18 @@ public abstract class GunBase : MonoBehaviour
     public float speed;
     public float distance;
 
-    public PlayerMove player;
-    public Transform playerTransform;
+    public bool isFlipped = false;
 
+    [SerializeField]
+    private PlayerMove player;
+    [SerializeField]
+    private Transform playerTransform;
+
+    public void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
+        playerTransform = GameObject.FindWithTag("Player").transform;
+    }
     public void FixedUpdate()
     {
         FollowPlayer(player.FacingRight);
@@ -34,14 +43,16 @@ public abstract class GunBase : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(-1.5f, 0, 0), speed * Time.deltaTime);
         }
 
-        if (transform.position.x < playerTransform.position.x)
+        if (transform.position.x < playerTransform.position.x && !isFlipped)
         {
-            transform.localScale = new Vector2(-1, 1);
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = !isFlipped;
         }
 
-        if (transform.position.x > playerTransform.position.x)
+        if (transform.position.x > playerTransform.position.x && isFlipped)
         {
-            transform.localScale = new Vector2(1, 1);
+            transform.Rotate(0f, 180f, 0f);
+            isFlipped = !isFlipped;
         }
     }
     //public abstract void Special();
