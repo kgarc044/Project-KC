@@ -2,52 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    public GameObject edgecheck;
+    protected float _Speed;
+    protected int _Health;
 
-    public float Speed;
-    public int Health;
+    public float checkRadius = 0.01f;
+    public Transform edgeCheck;
+    [HideInInspector] public LayerMask ground;
+    [HideInInspector] public float direction;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public bool isGrounded = true;
 
-    private LayerMask ground;
-    private float direction;
-    private BoxCollider2D ec;
-    private Rigidbody2D rb;
+    public abstract float Speed { get; }
+    public abstract int Health{ get; }
 
     void Awake()
     {
-        ground = LayerMask.GetMask("ground");
+        ground = LayerMask.GetMask("Ground");
         rb = transform.GetComponent<Rigidbody2D>();
-        ec = edgecheck.GetComponent<BoxCollider2D>();
-        direction = transform.right.x;
+        //direction = transform.right.x;
     }
 
-    void turn()
+    public void turn()
     {
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        direction *= -1;
-    }
-
-    public void patrol()
-    {
-        // If there is a gap in fron of the enemy or the enemy hit a wall
-
-        if ((rb.velocity.x < 0.01 && rb.velocity.x > 0) || !ec.IsTouchingLayers(ground))
-        {
-            turn();
-        }
-        else
-        {
-            rb.velocity = new Vector2(direction * Speed, rb.velocity.y);
-        }
+        transform.RotateAround(transform.position, transform.up, 180f);
+        //direction *= -1;
     }
 
     public void takeDamage(int damage)
     {
-        Health -= damage;
-        if (Health <= 0)
+        _Health -= damage;
+        if (_Health <= 0)
         {
             Destroy(gameObject);
         }
     }
+
+    public abstract void move();
+
+    public abstract void attack();
 }
