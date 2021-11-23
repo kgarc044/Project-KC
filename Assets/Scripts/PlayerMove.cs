@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     public int playerJumpPower = 1250;
 
     private bool facingRight = true;
+    private bool isCasting = false;
 
     public GameObject gun;
     private Transform playerTransform;
@@ -91,14 +92,21 @@ public class PlayerMove : MonoBehaviour
 
     public IEnumerator CastingGunSpell()
     {
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+        isCasting = true;
         SummonGun();
         yield return new WaitForSeconds(1f);
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        isCasting = false;
     }
 
     void SummonGun()
     {
-        Instantiate(gun, playerTransform.position, playerTransform.rotation);
+        if (facingRight)
+        {
+            Instantiate(gun, playerTransform.position + new Vector3(1.5f, 0, 0), playerTransform.rotation);
+        }
+        else
+        {
+            Instantiate(gun, playerTransform.position + new Vector3(-1.5f, 0, 0), playerTransform.rotation * new Quaternion(0,-180f,0,0));
+        }
     }
 }
