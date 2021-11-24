@@ -6,8 +6,10 @@ public abstract class GunBase : MonoBehaviour
 {
     public float speed;
     public float distance;
+    public int ammoTotal;
 
     public bool isFlipped = false;
+    public bool outOfAmmo;
 
     [SerializeField]
     private PlayerMove player;
@@ -16,6 +18,7 @@ public abstract class GunBase : MonoBehaviour
 
     public void Start()
     {
+        outOfAmmo = false;
         player = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
         playerTransform = GameObject.FindWithTag("Player").transform;
     }
@@ -29,33 +32,33 @@ public abstract class GunBase : MonoBehaviour
 
     public void FollowPlayer(bool facingRight)
     {
-        //if (Vector2.Distance(transform.position, playerTransform.position) > 2)
-        //{
-        //    transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, 2f * Time.deltaTime);
-        //}
-        if (facingRight)
+        if (!outOfAmmo)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(1.5f, 0, 0), speed * Time.deltaTime);
-        }
+            if (facingRight)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(1.5f, 0, 0), speed * Time.deltaTime);
+            }
 
-        else
-        {
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(-1.5f, 0, 0), speed * Time.deltaTime);
-        }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(-1.5f, 0, 0), speed * Time.deltaTime);
+            }
 
-        if (transform.position.x < playerTransform.position.x && !isFlipped)
-        {
-            transform.Rotate(0f, 180f, 0f);
-            isFlipped = !isFlipped;
-        }
+            if (transform.position.x < playerTransform.position.x && !isFlipped)
+            {
+                transform.Rotate(0f, 180f, 0f);
+                isFlipped = !isFlipped;
+            }
 
-        if (transform.position.x > playerTransform.position.x && isFlipped)
-        {
-            transform.Rotate(0f, 180f, 0f);
-            isFlipped = !isFlipped;
+            if (transform.position.x > playerTransform.position.x && isFlipped)
+            {
+                transform.Rotate(0f, 180f, 0f);
+                isFlipped = !isFlipped;
+            }
         }
     }
-    //public abstract void Special();
 
-    //public abstact void Reload();
+    public abstract void Special();
+
+    public abstract void ThrowGun();
 }

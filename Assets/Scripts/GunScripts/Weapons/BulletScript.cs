@@ -13,4 +13,9 @@ public class BulletScript : MonoBehaviour
     {
         bulletRB.velocity = transform.right * speed;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
