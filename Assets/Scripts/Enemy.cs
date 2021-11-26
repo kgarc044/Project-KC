@@ -21,13 +21,11 @@ public abstract class Enemy : MonoBehaviour
     {
         ground = LayerMask.GetMask("Ground");
         rb = transform.GetComponent<Rigidbody2D>();
-        //direction = transform.right.x;
     }
 
     public void turn()
     {
         transform.RotateAround(transform.position, transform.up, 180f);
-        //direction *= -1;
     }
 
     public void takeDamage(int damage)

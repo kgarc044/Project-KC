@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EvilWizard : Enemy
 {
-    [SerializeField] GameObject bullet;
+    public GameObject bullet;
     float fireRate;
     float nextFire;
     // Start is called before the first frame update
     void Start()
     {
+
         fireRate = 1f;
         nextFire = Time.time;
     }
@@ -22,7 +23,7 @@ public class EvilWizard : Enemy
 
     void FixedUpdate()
     {
-        move();
+        //move();
         attack();
     }
 
@@ -45,15 +46,15 @@ public class EvilWizard : Enemy
     {
         if (Time.time > nextFire)
         {
-            Instantiate(bullet, new Vector2(transform.position.x + transform.right.x, transform.position.y), transform.localRotation);
+            Instantiate(bullet, new Vector2(transform.position.x + (transform.right.x * 0.5f), transform.position.y), transform.localRotation);
             nextFire = Time.time + fireRate;
             
             // Used to test only
-            //turn();
+            turn();
         }
     }
 
-    public override float Speed   // Enemy Speed
+    public override float Speed   // Evil wizard Speed
     {
         get
         {
@@ -61,7 +62,7 @@ public class EvilWizard : Enemy
         }
     }
 
-    public override int Health   // Enemy Health
+    public override int Health   // Evil wizard Health
     {
         get
         {
