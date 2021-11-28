@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerCamera.unity
     guid: ffd68b986cae28542ab6e5e842d2d62e
+  - enabled: 1
+    path: Assets/Scenes/UI Scene.unity
+    guid: daecc6eedf50c1a4aa1bf6c70345c5a4
   m_configObjects: {}

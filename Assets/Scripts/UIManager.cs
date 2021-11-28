@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
         switch (b.name)
         {
             case "StartButton":
-                SceneManager.LoadScene(sceneName: "PlayerCamera");
+                SceneManager.LoadScene(sceneName: "UI Scene");
                 break;
             case "ContinueButton":
                 PauseMenu.gameObject.SetActive(false);
