@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using System;
 
 
-
 public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -17,6 +16,12 @@ public class UIManager : MonoBehaviour
     public Boolean PMenuActive;
     public static bool gameIsPaused;
 
+    [SerializeField] private ResourceBar healthBar;
+    [SerializeField] private ResourceBar manaBar;
+
+    //private static Scene LastScene;
+    //private static String LastSceneName;
+
     void Start()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -25,6 +30,8 @@ public class UIManager : MonoBehaviour
         PMenuActive = false;
         gameIsPaused = false;
 
+        healthBar.SetSize(.5f);
+        manaBar.SetSize(.5f);
     }
 
     // Update is called once per frame
@@ -33,7 +40,7 @@ public class UIManager : MonoBehaviour
         
         checkPauseMenu();
         checkKeyPress();
-
+        checkHitpoints();
     }
 
     private void checkPauseMenu()
@@ -84,6 +91,28 @@ public class UIManager : MonoBehaviour
                 gunReset();
                 Gun5.gameObject.SetActive(true);
                 break;
+            case "6":
+                healthBar.Increase(.1f);
+                break;
+            case "7":
+                healthBar.Decrease(.1f);
+                break;
+            case "8":
+                manaBar.Increase(.1f);
+                break;
+            case "9":
+                manaBar.Decrease(.1f);
+                break;
+        }
+    }
+
+    private void checkHitpoints()
+    {
+        if (healthBar.ReturnVal() == 0)
+        {
+            //LastScene = SceneManager.GetActiveScene();
+            //LastSceneName = UnityEngine.SceneManagement.Scene.name;
+            SceneManager.LoadScene(sceneName: "LoseMenu");
         }
     }
     
@@ -110,6 +139,12 @@ public class UIManager : MonoBehaviour
                 gameIsPaused = false;
                 break;
             case "SettingsButton":
+                break;
+            case "TryAgainButton":
+                SceneManager.LoadScene(sceneName: "UI Scene");
+                break;
+            case "MainMenuButton":
+                SceneManager.LoadScene(sceneName: "MainMenu");
                 break;
             case "QuitButton":
                 UnityEditor.EditorApplication.isPlaying = false;
