@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
     
     private void gunReset()
     {
-        if(Gun1.active) Gun1.gameObject.SetActive(false);
+        if (Gun1.active) Gun1.gameObject.SetActive(false);
         else if (Gun2.active) Gun2.gameObject.SetActive(false);
         else if (Gun3.active) Gun3.gameObject.SetActive(false);
         else if (Gun4.active) Gun4.gameObject.SetActive(false);

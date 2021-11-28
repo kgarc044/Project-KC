@@ -2171,10 +2171,10 @@ MonoBehaviour:
   playerJumpPower: 300
   FacingRight: 1
   isGrounded: 1
-  groundCheck: {fileID: 854010465}
+  groundCheck: {fileID: 0}
   whatisGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!50 &966655202
 Rigidbody2D:
   serializedVersion: 4
