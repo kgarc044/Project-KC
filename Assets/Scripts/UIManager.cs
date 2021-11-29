@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject PauseMenu;
-    public GameObject Gun1, Gun2, Gun3, Gun4, Gun5;
+    //public GameObject Gun1, Gun2, Gun3, Gun4, Gun5;
 
     public Boolean PMenuActive;
     public static bool gameIsPaused;
@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
         var input = Input.inputString;
         switch (input)
         {
-            case "1":
+            /*case "1":
                 gunReset();
                 Gun1.gameObject.SetActive(true);
                 break;
@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
             case "5":
                 gunReset();
                 Gun5.gameObject.SetActive(true);
-                break;
+                break;*/
             case "6":
                 healthBar.Increase(.1f);
                 break;
@@ -116,14 +116,14 @@ public class UIManager : MonoBehaviour
         }
     }
     
-    private void gunReset()
+    /*private void gunReset()
     {
         if (Gun1.active) Gun1.gameObject.SetActive(false);
         else if (Gun2.active) Gun2.gameObject.SetActive(false);
         else if (Gun3.active) Gun3.gameObject.SetActive(false);
         else if (Gun4.active) Gun4.gameObject.SetActive(false);
         else if (Gun5.active) Gun5.gameObject.SetActive(false);
-    }
+    }*/
 
     public void ButtonClicked(Button b)
     {
