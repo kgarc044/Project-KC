@@ -23,6 +23,11 @@ public class FlintLockPistol : GunBase
                 StartCoroutine(ShootDelay());
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Special();
+        }
     }
 
     public override void Shoot()
@@ -48,7 +53,9 @@ public class FlintLockPistol : GunBase
 
     public override void Special()
     {
-        throw new System.NotImplementedException();
+        Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, 0.2f, 0), firePoint.rotation);
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, -0.2f, 0), firePoint.rotation);
     }
 
     public override void ThrowGun()
