@@ -7,18 +7,29 @@ public class ResourceBar : MonoBehaviour
 {
     private Resource re;
     public Image bar;
+    public float regen;
 
     private void Start()
     {
-        bar = transform.Find("Bar").GetComponent<Image>();
+        bar = transform.Find("Manabar").GetComponent<Image>();
         //bar.fillAmount = .3f;
         re = new Resource();
+    }
+
+    private void update()
+    {
+        bar.fillAmount += regen;
     }
 
     public void SetSize(float currentSize)
     {
         bar = transform.Find("Bar").GetComponent<Image>();
         bar.fillAmount = currentSize;
+    }
+
+    public void SetRegen(float RegenNum)
+    {
+        regen = RegenNum;
     }
 
     public void Increase(float incriment)
@@ -36,17 +47,32 @@ public class ResourceBar : MonoBehaviour
         return bar.fillAmount;
     }
 
+    /*public void Update()
+    {
+        ReAmount += ReRegenAmount * Time.deltaTime;
+    }*/
+
     public class Resource
     {
         public const int RE_MAX = 100;
 
-        private int ReAmount;
+        private float ReAmount;
         private float ReRegenAmount;
 
         public Resource()
         {
             ReAmount = 100;
             ReRegenAmount = 0;
+        }
+
+        public void Update()
+        {
+            ReAmount += ReRegenAmount * Time.deltaTime;
+        }
+
+        public void SetRegen(float RegenNum)
+        {
+            ReRegenAmount = RegenNum;
         }
 
         public float GetNormalized()

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -11,6 +10,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject PauseMenu;
+    public GameObject InvMenu;
     //public GameObject Gun1, Gun2, Gun3, Gun4, Gun5;
 
     public Boolean PMenuActive;
@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
 
         healthBar.SetSize(.5f);
         manaBar.SetSize(.5f);
+        manaBar.SetRegen(.05f);
     }
 
     // Update is called once per frame
@@ -71,26 +72,31 @@ public class UIManager : MonoBehaviour
         var input = Input.inputString;
         switch (input)
         {
-            /*case "1":
-                gunReset();
-                Gun1.gameObject.SetActive(true);
+            case "1":
+                //gunReset();
+                //Gun1.gameObject.SetActive(true);
+                manaBar.Decrease(.2f);
                 break;
             case "2":
-                gunReset();
-                Gun2.gameObject.SetActive(true);
+                //gunReset();
+                //Gun2.gameObject.SetActive(true);
+                manaBar.Decrease(.3f);
                 break;
             case "3":
-                gunReset();
-                Gun3.gameObject.SetActive(true);
+                //gunReset();
+                //Gun3.gameObject.SetActive(true);
+                manaBar.Decrease(.4f);
                 break;
             case "4":
-                gunReset();
-                Gun4.gameObject.SetActive(true);
+                //gunReset();
+                //Gun4.gameObject.SetActive(true);
+                manaBar.Decrease(.5f);
                 break;
             case "5":
-                gunReset();
-                Gun5.gameObject.SetActive(true);
-                break;*/
+                //gunReset();
+                //Gun5.gameObject.SetActive(true);
+                manaBar.Decrease(.6f);
+                break;/**/
             case "6":
                 healthBar.Increase(.1f);
                 break;
@@ -100,9 +106,9 @@ public class UIManager : MonoBehaviour
             case "8":
                 manaBar.Increase(.1f);
                 break;
-            case "9":
+            /*case "9":
                 manaBar.Decrease(.1f);
-                break;
+                break;*/
         }
     }
 
@@ -149,6 +155,14 @@ public class UIManager : MonoBehaviour
             case "QuitButton":
                 UnityEditor.EditorApplication.isPlaying = false;
                 Application.Quit();
+                break;
+            case "InventoryButton":
+                PauseMenu.gameObject.SetActive(false);
+                InvMenu.gameObject.SetActive(true);
+                break;
+            case "InvBackButton":
+                InvMenu.gameObject.SetActive(false);
+                PauseMenu.gameObject.SetActive(true);
                 break;
         }
     }
