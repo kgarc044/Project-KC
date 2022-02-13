@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3503698276174218017}
   - component: {fileID: 2004564098619255210}
   - component: {fileID: 4968574539055926679}
-  m_Layer: 0
-  m_Name: Bullet
+  m_Layer: 2
+  m_Name: fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4249a5845b56c45a3b2fbe9ef42cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpeed: 3
 --- !u!50 &4968574539055926679
 Rigidbody2D:
   serializedVersion: 4
