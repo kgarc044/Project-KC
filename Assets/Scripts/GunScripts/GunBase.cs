@@ -36,12 +36,12 @@ public abstract class GunBase : MonoBehaviour
         {
             if (facingRight)
             {
-                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(1.5f, 0, 0), speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(1.0f, 0, 0), speed * Time.deltaTime);
             }
 
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(-1.5f, 0, 0), speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(-1.0f, 0, 0), speed * Time.deltaTime);
             }
 
             if (transform.position.x < playerTransform.position.x && !isFlipped)

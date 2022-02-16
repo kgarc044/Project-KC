@@ -22,6 +22,11 @@ public class BulletScript : MonoBehaviour
         {
             Enemy e = collision.gameObject.GetComponent<Enemy>();
             e.takeDamage(damage);
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.tag == "Ground")
+        {
+            Destroy(this.gameObject);
         }
     }
 }

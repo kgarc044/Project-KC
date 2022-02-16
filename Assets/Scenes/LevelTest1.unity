@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 83740756}
   m_Layer: 8
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3148,7 +3148,7 @@ MonoBehaviour:
   checkRadius: 0.2
   playerSpeed: 5
   playerJumpPower: 500
-  gun: {fileID: 4522971684661582716, guid: b9dc578b649e4764c8435091f49f1b36, type: 3}
+  gun: {fileID: 574156491301855328, guid: eb765a49136f64a43890579295206c05, type: 3}
   isGrounded: 0
   groundCheck: {fileID: 676628032}
   whatisGround:
@@ -3284,6 +3284,10 @@ PrefabInstance:
     - target: {fileID: 1043826916508055897, guid: 4bb9f41af44ffc14fbe2a8bcb1a6e820, type: 3}
       propertyPath: m_Name
       value: Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043826916508055897, guid: 4bb9f41af44ffc14fbe2a8bcb1a6e820, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1043826916508055898, guid: 4bb9f41af44ffc14fbe2a8bcb1a6e820, type: 3}
       propertyPath: m_LocalPosition.x
