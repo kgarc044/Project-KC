@@ -3148,7 +3148,7 @@ MonoBehaviour:
   checkRadius: 0.2
   playerSpeed: 5
   playerJumpPower: 500
-  gun: {fileID: 574156491301855328, guid: eb765a49136f64a43890579295206c05, type: 3}
+  gun: {fileID: 8262139014882769478, guid: 6abbc57bd8452594dae4e1e6f0a1af89, type: 3}
   isGrounded: 0
   groundCheck: {fileID: 676628032}
   whatisGround:

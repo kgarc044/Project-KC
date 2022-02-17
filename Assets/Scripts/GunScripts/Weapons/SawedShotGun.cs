@@ -63,9 +63,6 @@ public class SawedShotGun : GunBase
 
     public override void Special()
     {
-        Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, 0.2f, 0), firePoint.rotation);
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, -0.2f, 0), firePoint.rotation);
     }
 
     public override void ThrowGun()
