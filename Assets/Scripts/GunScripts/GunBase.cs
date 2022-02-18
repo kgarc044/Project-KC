@@ -15,6 +15,7 @@ public abstract class GunBase : MonoBehaviour
     private PlayerMove player;
     [SerializeField]
     private Transform playerTransform;
+    
 
     public void Start()
     {

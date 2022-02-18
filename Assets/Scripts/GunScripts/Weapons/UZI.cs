@@ -16,6 +16,8 @@ public class UZI : GunBase
     public int bulletCount;
     public float maxY;
     public float minY;
+    public Animator animatorController;
+
 
     void Update()
     {
@@ -23,8 +25,15 @@ public class UZI : GunBase
         {
             if (canShoot)
             {
+                animatorController.SetBool("IsShooting", true);
                 StartCoroutine(ShootDelay());
+                
+
             }
+        }
+        else
+        {
+            animatorController.SetBool("IsShooting", false);
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -35,23 +44,28 @@ public class UZI : GunBase
 
     public override void Shoot()
     {
+
         if (ammoTotal > 0)
         {
-                GameObject projectileInstance;
-                projectileInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-                projectileInstance.GetComponent<Rigidbody2D>().
-                    AddForce(firePoint.up + new Vector3(0f, Random.Range(minY, maxY), 0f));
+            GameObject projectileInstance;
+            
+            projectileInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            projectileInstance.GetComponent<Rigidbody2D>().
+            AddForce(firePoint.up + new Vector3(0f, Random.Range(minY, maxY), 0f));
+            
 
             ammoTotal--;
         }
         else
         {
+
             ThrowGun();
         }
     }
 
     public IEnumerator ShootDelay()
     {
+        
         Shoot();
         canShoot = false;
         yield return new WaitForSeconds(cooldownTime);
