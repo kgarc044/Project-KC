@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public float speed = 20f;
+    public int damage = 50; // Placeholder damage for flintlock bullet
 
     [SerializeField]
     private Rigidbody2D bulletRB;
@@ -14,8 +15,13 @@ public class BulletScript : MonoBehaviour
         bulletRB.velocity = transform.right * speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Enemy e = collision.gameObject.GetComponent<Enemy>();
+            e.takeDamage(damage);
+        }
     }
 }

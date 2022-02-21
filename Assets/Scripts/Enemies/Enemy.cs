@@ -1,45 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    public GameObject edgecheck;
-
     public float Speed;
-    public int Health;
+    public float maxHealth;
+    public float Health;
 
-    private LayerMask ground;
-    private float direction;
-    private BoxCollider2D ec;
-    private Rigidbody2D rb;
+    public float checkRadius = 0.01f;
+    public Transform edgeCheck;
+    public Transform groundCheck;
+    public Transform front;
+    [HideInInspector] public LayerMask ground;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool edge;
+
+    public Canvas HealthCanvas;
+    public Image hp; // This is the red hp image
+    public Image hpeffect; // This is used to create the white health effect
+
 
     void Awake()
     {
-        ground = LayerMask.GetMask("ground");
+        ground = LayerMask.GetMask("Ground");
         rb = transform.GetComponent<Rigidbody2D>();
-        ec = edgecheck.GetComponent<BoxCollider2D>();
-        direction = transform.right.x;
+        HealthCanvas.transform.right = new Vector3(1, 0, 0);
     }
 
-    void turn()
+    public void turn()
     {
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        direction *= -1;
-    }
-
-    public void patrol()
-    {
-        // If there is a gap in fron of the enemy or the enemy hit a wall
-
-        if ((rb.velocity.x < 0.01 && rb.velocity.x > 0) || !ec.IsTouchingLayers(ground))
-        {
-            turn();
-        }
-        else
-        {
-            rb.velocity = new Vector2(direction * Speed, rb.velocity.y);
-        }
+        transform.Rotate(0f, 180f, 0f);
+        HealthCanvas.transform.right = new Vector3(1, 0, 0);
     }
 
     public void takeDamage(int damage)
@@ -47,7 +41,41 @@ public class Enemy : MonoBehaviour
         Health -= damage;
         if (Health <= 0)
         {
-            Destroy(gameObject);
+            die();
         }
     }
+
+    public void die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void setHealthbar()
+    {
+        HealthCanvas.gameObject.SetActive(Health < maxHealth);
+
+        hp.fillAmount = Health / maxHealth;
+
+        if(hpeffect.fillAmount > hp.fillAmount)
+        {
+            hpeffect.fillAmount -= 0.01f;
+        }
+        else
+        {
+            hpeffect.fillAmount = hp.fillAmount;
+        }
+
+    }
+
+    public void checkFloor()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, ground);
+        edge = !Physics2D.OverlapCircle(edgeCheck.position, checkRadius, ground);
+    }
+
+    public abstract void move();
+
+    public abstract IEnumerator attack();
+
+    public abstract bool detectPlayer();
 }
