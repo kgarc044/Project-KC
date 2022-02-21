@@ -9,15 +9,21 @@ public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject PauseMenu;
-    public GameObject InvMenu;
+    public  GameObject PauseMenu;
+    public  GameObject InvMenu;
     //public GameObject Gun1, Gun2, Gun3, Gun4, Gun5;
+    public  GameObject gunImg;
+    private GameObject activeGun;
+    public  GameObject noGunText;
 
     public Boolean PMenuActive;
     public static bool gameIsPaused;
 
     [SerializeField] private ResourceBar healthBar;
     [SerializeField] private ResourceBar manaBar;
+
+    public Text ammoCount;
+    
 
     //private static Scene LastScene;
     //private static String LastSceneName;
@@ -32,7 +38,7 @@ public class UIManager : MonoBehaviour
 
         healthBar.SetSize(.5f);
         manaBar.SetSize(.5f);
-        manaBar.SetRegen(.05f);
+        manaBar.SetRegen(.0002f);
     }
 
     // Update is called once per frame
@@ -42,6 +48,7 @@ public class UIManager : MonoBehaviour
         checkPauseMenu();
         checkKeyPress();
         checkHitpoints();
+        checkGun();
     }
 
     private void checkPauseMenu()
@@ -114,6 +121,8 @@ public class UIManager : MonoBehaviour
 
     private void checkHitpoints()
     {
+        healthBar.Increase(.00005f);
+        manaBar.Increase(.0002f);
         if (healthBar.ReturnVal() == 0)
         {
             //LastScene = SceneManager.GetActiveScene();
@@ -121,17 +130,32 @@ public class UIManager : MonoBehaviour
             SceneManager.LoadScene(sceneName: "LoseMenu");
         }
     }
-    
-    /*private void gunReset()
-    {
-        if (Gun1.active) Gun1.gameObject.SetActive(false);
-        else if (Gun2.active) Gun2.gameObject.SetActive(false);
-        else if (Gun3.active) Gun3.gameObject.SetActive(false);
-        else if (Gun4.active) Gun4.gameObject.SetActive(false);
-        else if (Gun5.active) Gun5.gameObject.SetActive(false);
-    }*/
 
-    public void ButtonClicked(Button b)
+    private void checkGun()
+    {
+        if ((activeGun = GameObject.Find("Flintlock(Clone)")) != null)
+        {
+            noGunText.gameObject.SetActive(false);
+            gunImg.gameObject.SetActive(true);
+            ammoCount.text = string.Format("{0}", activeGun.GetComponent<FlintLockPistol>().ammoTotal) + "/2";
+        }
+        else
+        {
+            gunImg.gameObject.SetActive(false);
+            noGunText.gameObject.SetActive(true);
+        }
+    }
+
+        /*private void gunReset()
+        {
+            if (Gun1.active) Gun1.gameObject.SetActive(false);
+            else if (Gun2.active) Gun2.gameObject.SetActive(false);
+            else if (Gun3.active) Gun3.gameObject.SetActive(false);
+            else if (Gun4.active) Gun4.gameObject.SetActive(false);
+            else if (Gun5.active) Gun5.gameObject.SetActive(false);
+        }*/
+
+        public void ButtonClicked(Button b)
     {
         switch (b.name)
         {

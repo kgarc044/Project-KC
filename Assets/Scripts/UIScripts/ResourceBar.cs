@@ -11,7 +11,7 @@ public class ResourceBar : MonoBehaviour
 
     private void Start()
     {
-        bar = transform.Find("Manabar").GetComponent<Image>();
+        //bar = transform.Find("Manabar").GetComponent<Image>();
         //bar.fillAmount = .3f;
         re = new Resource();
     }
