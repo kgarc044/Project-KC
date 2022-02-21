@@ -121,14 +121,15 @@ public class UIManager : MonoBehaviour
 
     private void checkHitpoints()
     {
-        healthBar.Increase(.00005f);
-        manaBar.Increase(.0002f);
+
         if (healthBar.ReturnVal() == 0)
         {
             //LastScene = SceneManager.GetActiveScene();
             //LastSceneName = UnityEngine.SceneManagement.Scene.name;
             SceneManager.LoadScene(sceneName: "LoseMenu");
         }
+        healthBar.Increase(.00005f);
+        manaBar.Increase(.0002f);
     }
 
     private void checkGun()
@@ -171,7 +172,7 @@ public class UIManager : MonoBehaviour
             case "SettingsButton":
                 break;
             case "TryAgainButton":
-                SceneManager.LoadScene(sceneName: "UI Scene");
+                SceneManager.LoadScene(sceneName: "LevelTest1");
                 break;
             case "MainMenuButton":
                 SceneManager.LoadScene(sceneName: "MainMenu");
