@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1043826916508055896}
   - component: {fileID: 8919758538945577923}
   - component: {fileID: 1517796183565843508}
+  - component: {fileID: 1400788747788097083}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Enemy
@@ -123,7 +124,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.030843377, y: 0.00041115284}
+  m_Offset: {x: -0.01052767, y: 0.00041115284}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -134,7 +135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.97076964, y: 1.0011044}
+  m_Size: {x: 0.6778717, y: 1.0011044}
   m_EdgeRadius: 0
 --- !u!114 &1517796183565843508
 MonoBehaviour:
@@ -160,9 +161,29 @@ MonoBehaviour:
     m_Bits: 0
   rb: {fileID: 0}
   isGrounded: 1
+  edge: 0
   HealthCanvas: {fileID: 1517796182809617976}
   hp: {fileID: 1517796183194733103}
   hpeffect: {fileID: 1517796182907349591}
+--- !u!95 &1400788747788097083
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043826916508055897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba066b95cef22f34a917cf8a31b80047, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1328456532817403513
 GameObject:
   m_ObjectHideFlags: 0

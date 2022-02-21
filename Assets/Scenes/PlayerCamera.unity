@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1975990185091108233, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.097
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1975990185091108233, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1975990185091108233, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1975990185091108233, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
       propertyPath: m_LocalRotation.x
@@ -177,6 +177,18 @@ PrefabInstance:
     - target: {fileID: 1975990185091108234, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
       propertyPath: m_Name
       value: Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975990185091108234, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987435994249721616, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.017722964
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987435994249721616, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
+      propertyPath: m_Size.x
+      value: 0.59347105
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b81e02aa9cc81d04fb24723827412fbb, type: 3}
