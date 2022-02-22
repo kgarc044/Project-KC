@@ -152,6 +152,8 @@ MonoBehaviour:
   Speed: 0
   maxHealth: 0
   Health: 0
+  DamageText: {fileID: 1145557925408627793, guid: d2147364a2982c84d9b034a55803b59e, type: 3}
+  blood: {fileID: 8487295823172091914, guid: 15da5113743aa904682bbf6ad5be9c4b, type: 3}
   checkRadius: 0.01
   edgeCheck: {fileID: 1517796183386007457}
   groundCheck: {fileID: 5547581411351476518}
@@ -175,7 +177,7 @@ Animator:
   m_GameObject: {fileID: 1043826916508055897}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ba066b95cef22f34a917cf8a31b80047, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
