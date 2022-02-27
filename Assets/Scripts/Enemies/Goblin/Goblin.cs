@@ -44,6 +44,7 @@ public class Goblin : Enemy
             StopCoroutine("attack");
             currentAction = "moving";
         }
+        Debug.Log(new Vector2(transform.right.x * Speed * 2f, rb.velocity.y));
         rb.velocity = new Vector2(transform.right.x * Speed * 2f, rb.velocity.y);
     }
 
