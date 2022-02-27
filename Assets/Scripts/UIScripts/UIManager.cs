@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
-
 
 
 public class UIManager : MonoBehaviour
@@ -182,6 +180,14 @@ public class UIManager : MonoBehaviour
             case "QuitButton":
                 UnityEditor.EditorApplication.isPlaying = false;
                 Application.Quit();
+                break;
+            case "InventoryButton":
+                PauseMenu.gameObject.SetActive(false);
+                InvMenu.gameObject.SetActive(true);
+                break;
+            case "InvBackButton":
+                InvMenu.gameObject.SetActive(false);
+                PauseMenu.gameObject.SetActive(true);
                 break;
         }
     }
