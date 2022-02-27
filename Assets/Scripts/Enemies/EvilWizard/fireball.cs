@@ -15,7 +15,7 @@ public class fireball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(rb.velocity);
     }
 
     void OnTriggerEnter2D (Collider2D col)

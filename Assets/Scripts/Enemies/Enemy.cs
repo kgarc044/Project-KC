@@ -8,8 +8,6 @@ public abstract class Enemy : MonoBehaviour
     public float Speed;
     public float maxHealth;
     public float Health;
-    public GameObject DamageText;
-    public GameObject blood;
 
     public float checkRadius = 0.01f;
     public Transform edgeCheck;
@@ -41,21 +39,10 @@ public abstract class Enemy : MonoBehaviour
     public void takeDamage(int damage)
     {
         Health -= damage;
-        if (DamageText && blood)
-        {
-            ShowDamage(damage);
-        }
         if (Health <= 0)
         {
             die();
         }
-    }
-
-    public void ShowDamage(int damage)
-    {
-        Instantiate(blood, transform.position, Quaternion.identity);
-        var dmg = Instantiate(DamageText, transform.position, Quaternion.identity);
-        dmg.GetComponent<TextMesh>().text = damage.ToString();
     }
 
     public void die()
