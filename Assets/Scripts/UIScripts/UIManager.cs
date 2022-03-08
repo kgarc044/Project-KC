@@ -15,18 +15,21 @@ public class UIManager : MonoBehaviour
     public  GameObject gunImg;
     private GameObject activeGun;
     public  GameObject noGunText;
+    
+    public CanvasGroup Messages;
 
     public Boolean PMenuActive;
     public static bool gameIsPaused;
 
-    [SerializeField] private ResourceBar healthBar;
-    [SerializeField] private ResourceBar manaBar;
+    [SerializeField] public ResourceBar healthBar;
+    [SerializeField] public ResourceBar manaBar;
 
     public Text ammoCount;
-    
+
 
     //private static Scene LastScene;
     //private static String LastSceneName;
+    private bool fadeOut = false;
 
     void Start()
     {
@@ -45,13 +48,17 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         
-        checkPauseMenu();
-        checkKeyPress();
-        checkHitpoints();
-        checkGun();
+        CheckPauseMenu();
+        CheckKeyPress();
+        CheckHitpoints();
+        CheckGun();
+        if(fadeOut == true)
+        {
+            FadeTxt();
+        }
     }
 
-    private void checkPauseMenu()
+    private void CheckPauseMenu()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -74,16 +81,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void checkKeyPress()
+    private void CheckKeyPress()
     {
         var input = Input.inputString;
         switch (input)
         {
-            case "1":
+            /*case "1":
                 //gunReset();
                 //Gun1.gameObject.SetActive(true);
                 manaBar.Decrease(.2f);
-                break;
+                break;*/
             case "2":
                 //gunReset();
                 //Gun2.gameObject.SetActive(true);
@@ -119,7 +126,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void checkHitpoints()
+    private void CheckHitpoints()
     {
 
         if (healthBar.ReturnVal() == 0)
@@ -132,13 +139,19 @@ public class UIManager : MonoBehaviour
         manaBar.Increase(.0002f);
     }
 
-    private void checkGun()
+    private void CheckGun()
     {
-        if ((activeGun = GameObject.Find("Flintlock(Clone)")) != null)
+        if (GameObject.FindGameObjectsWithTag("Gun").Length != 0)
         {
+            activeGun = GameObject.FindGameObjectsWithTag("Gun")[0];
+            gunImg.gameObject.GetComponent<Image>().sprite = activeGun.GetComponent<SpriteRenderer>().sprite;
+            //String gunName = activeGun.name;
+            //Type type = Type.GetType(gunName);
+            //object type1 = Activator.CreateInstance(type);
             noGunText.gameObject.SetActive(false);
             gunImg.gameObject.SetActive(true);
-            ammoCount.text = string.Format("{0}", activeGun.GetComponent<FlintLockPistol>().ammoTotal) + "/2";
+            //ammoCount.text = string.Format("{0}", activeGun.GetComponent<type1>().ammoTotal) + "/" + activeGun.GetComponent<type1>().ammoMax;
+            ammoCount.text = string.Format("{0}", activeGun.GetComponent<FlintLockPistol>().ammoTotal) + "/" + activeGun.GetComponent<FlintLockPistol>().ammoMax;
         }
         else
         {
@@ -156,7 +169,7 @@ public class UIManager : MonoBehaviour
             else if (Gun5.active) Gun5.gameObject.SetActive(false);
         }*/
 
-        public void ButtonClicked(Button b)
+    public void ButtonClicked(Button b)
     {
         switch (b.name)
         {
@@ -189,6 +202,20 @@ public class UIManager : MonoBehaviour
                 InvMenu.gameObject.SetActive(false);
                 PauseMenu.gameObject.SetActive(true);
                 break;
+        }
+    }
+
+    public void PopText(String msg)
+    {
+        Messages.alpha = 1;
+        fadeOut = true;
+    }
+    public void FadeTxt()
+    {
+        if (Messages.alpha >= 0)
+        {
+            Messages.alpha -= Time.deltaTime;
+            if (Messages.alpha == 0) fadeOut = false;
         }
     }
 }

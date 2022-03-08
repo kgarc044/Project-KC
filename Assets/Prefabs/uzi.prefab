@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 340113503}
   m_Layer: 0
   m_Name: uzi
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,6 +215,7 @@ MonoBehaviour:
   speed: 10
   distance: 0.25
   ammoTotal: 10
+  ammoMax: 0
   isFlipped: 0
   outOfAmmo: 0
   player: {fileID: 0}

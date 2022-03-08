@@ -7,6 +7,7 @@ public abstract class GunBase : MonoBehaviour
     public float speed;
     public float distance;
     public int ammoTotal;
+    public int ammoMax;
 
     public bool isFlipped = false;
     public bool outOfAmmo;
@@ -15,13 +16,16 @@ public abstract class GunBase : MonoBehaviour
     private PlayerMove player;
     [SerializeField]
     private Transform playerTransform;
-    
+    [SerializeField]
+    public GameObject UI;
 
     public void Start()
     {
         outOfAmmo = false;
         player = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
         playerTransform = GameObject.FindWithTag("Player").transform;
+        ammoMax = ammoTotal;
+        UI = GameObject.Find("UIManager");
     }
     public void FixedUpdate()
     {
