@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlintLockPistol : GunBase
+public class SawedShotGun : GunBase
 {
     public float cooldownTime = 1f;
     public bool canShoot = true;
@@ -13,10 +13,13 @@ public class FlintLockPistol : GunBase
     private GameObject bulletPrefab;
     [SerializeField]
     private Collider2D gunCollider;
+    public int bulletCount;
+    public float maxY;
+    public float minY;
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             if (canShoot)
             {
@@ -34,7 +37,14 @@ public class FlintLockPistol : GunBase
     {
         if (ammoTotal > 0)
         {
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            for(int i = 0; i < bulletCount; i++)
+            {
+                GameObject projectileInstance;
+                projectileInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                projectileInstance.GetComponent<Rigidbody2D>().
+                    AddForce(firePoint.up + new Vector3(0f, Random.Range(minY, maxY), 0f));
+            }
+            
             ammoTotal--;
         }
         else
@@ -53,9 +63,6 @@ public class FlintLockPistol : GunBase
 
     public override void Special()
     {
-        Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, 0.2f, 0), firePoint.rotation);
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, -0.2f, 0), firePoint.rotation);
     }
 
     public override void ThrowGun()
