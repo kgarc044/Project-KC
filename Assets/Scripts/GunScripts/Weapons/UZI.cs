@@ -80,6 +80,7 @@ public class UZI : GunBase
     {
         outOfAmmo = true;
         gunCollider.enabled = true;
+        ReturnGunStatus();
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Rigidbody2D>().AddForce(transform.right * 1000f);
         Debug.Log("*Wizard throws gun*");
@@ -87,6 +88,10 @@ public class UZI : GunBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

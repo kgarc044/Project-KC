@@ -62,4 +62,9 @@ public abstract class GunBase : MonoBehaviour
     public abstract void Special();
 
     public abstract void ThrowGun();
+
+    public void ReturnGunStatus()
+    {
+        player.gunSummoned = false;
+    }
 }

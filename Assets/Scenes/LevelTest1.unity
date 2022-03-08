@@ -169,8 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec8d8c244c491439735781f349dfd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 768763368}
-  parallaxEffect: 0.3
 --- !u!212 &443345
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3148,7 +3146,12 @@ MonoBehaviour:
   checkRadius: 0.2
   playerSpeed: 5
   playerJumpPower: 500
-  gun: {fileID: 8262139014882769478, guid: 6abbc57bd8452594dae4e1e6f0a1af89, type: 3}
+  index: 0
+  gunSummoned: 0
+  gun:
+  - {fileID: 4522971684661582716, guid: b9dc578b649e4764c8435091f49f1b36, type: 3}
+  - {fileID: 574156491301855328, guid: eb765a49136f64a43890579295206c05, type: 3}
+  - {fileID: 8262139014882769478, guid: 6abbc57bd8452594dae4e1e6f0a1af89, type: 3}
   isGrounded: 0
   groundCheck: {fileID: 676628032}
   whatisGround:
@@ -4119,8 +4122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec8d8c244c491439735781f349dfd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 768763368}
-  parallaxEffect: 0.15
 --- !u!212 &1913261802
 SpriteRenderer:
   m_ObjectHideFlags: 0
