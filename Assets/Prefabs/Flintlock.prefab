@@ -103,7 +103,7 @@ MonoBehaviour:
   distance: 0.25
   ammoTotal: 2
   isFlipped: 0
-  outOfAmmo: 0
+  outOfAmmo: 1
   player: {fileID: 0}
   playerTransform: {fileID: 0}
   cooldownTime: 1

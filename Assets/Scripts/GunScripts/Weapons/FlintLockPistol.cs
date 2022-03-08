@@ -14,6 +14,8 @@ public class FlintLockPistol : GunBase
     [SerializeField]
     private Collider2D gunCollider;
 
+
+
     void Update()
     {
         if (Input.GetButton("Fire1"))
@@ -62,6 +64,7 @@ public class FlintLockPistol : GunBase
     {
         outOfAmmo = true;
         gunCollider.enabled = true;
+        ReturnGunStatus();
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Rigidbody2D>().AddForce(transform.right * 1000f);
         Debug.Log("*Wizard throws gun*");
@@ -69,6 +72,10 @@ public class FlintLockPistol : GunBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if(collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

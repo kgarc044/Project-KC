@@ -69,6 +69,7 @@ public class SawedShotGun : GunBase
     {
         outOfAmmo = true;
         gunCollider.enabled = true;
+        ReturnGunStatus();
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Rigidbody2D>().AddForce(transform.right * 1000f);
         Debug.Log("*Wizard throws gun*");

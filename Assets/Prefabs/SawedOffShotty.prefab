@@ -132,7 +132,7 @@ MonoBehaviour:
   distance: 0.25
   ammoTotal: 3
   isFlipped: 0
-  outOfAmmo: 0
+  outOfAmmo: 1
   player: {fileID: 0}
   playerTransform: {fileID: 0}
   cooldownTime: 1
@@ -156,9 +156,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1614095, y: 0.00551486}
+  m_Offset: {x: -0.12162757, y: 0.109730005}
   serializedVersion: 2
-  m_Radius: 0.27179587
+  m_Radius: 0.14662504
 --- !u!50 &-2192249539474630526
 Rigidbody2D:
   serializedVersion: 4
