@@ -145,13 +145,11 @@ public class UIManager : MonoBehaviour
         {
             activeGun = GameObject.FindGameObjectsWithTag("Gun")[0];
             gunImg.gameObject.GetComponent<Image>().sprite = activeGun.GetComponent<SpriteRenderer>().sprite;
-            //String gunName = activeGun.name;
-            //Type type = Type.GetType(gunName);
-            //object type1 = Activator.CreateInstance(type);
+
             noGunText.gameObject.SetActive(false);
             gunImg.gameObject.SetActive(true);
-            //ammoCount.text = string.Format("{0}", activeGun.GetComponent<type1>().ammoTotal) + "/" + activeGun.GetComponent<type1>().ammoMax;
-            ammoCount.text = string.Format("{0}", activeGun.GetComponent<FlintLockPistol>().ammoTotal) + "/" + activeGun.GetComponent<FlintLockPistol>().ammoMax;
+
+            ammoCount.text = string.Format("{0}", activeGun.GetComponent<GunBase>().ammoTotal) + "/" + activeGun.GetComponent<GunBase>().ammoMax;
         }
         else
         {

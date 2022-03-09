@@ -58,7 +58,6 @@ public class FlintLockPistol : GunBase
             Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, 0.2f, 0), firePoint.rotation);
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, -0.2f, 0), firePoint.rotation);
-            //manaBar.GetComponent<ResourceBar>().Decrease(.4f);
             UI.GetComponent<UIManager>().manaBar.Decrease(.4f);
         }
         else { UI.GetComponent<UIManager>().PopText("Mana");}
