@@ -63,6 +63,10 @@ public class SawedShotGun : GunBase
 
     public override void Special()
     {
+        if (UI.GetComponent<UIManager>().manaBar.ReturnVal() > .4)
+        {
+            UI.GetComponent<UIManager>().manaBar.Decrease(.4f);
+        }
     }
 
     public override void ThrowGun()
