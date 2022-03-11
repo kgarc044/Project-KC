@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec8d8c244c491439735781f349dfd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  parallaxEffect: 0
 --- !u!212 &443345
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3283,23 +3285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkRadius: 0.2
-  playerSpeed: 5
-  playerJumpPower: 500
-  index: 0
-  gunSummoned: 0
-  gun:
-  - {fileID: 4522971684661582716, guid: b9dc578b649e4764c8435091f49f1b36, type: 3}
-  - {fileID: 574156491301855328, guid: eb765a49136f64a43890579295206c05, type: 3}
-  - {fileID: 8262139014882769478, guid: 6abbc57bd8452594dae4e1e6f0a1af89, type: 3}
-  isGrounded: 0
-  groundCheck: {fileID: 676628032}
-  whatisGround:
-    serializedVersion: 2
-    m_Bits: 256
---- !u!50 &330075954
-Rigidbody2D:
-  serializedVersion: 4
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -3753,7 +3738,12 @@ MonoBehaviour:
   checkRadius: 0.2
   playerSpeed: 5
   playerJumpPower: 500
-  gun: {fileID: 4522971684661582716, guid: b9dc578b649e4764c8435091f49f1b36, type: 3}
+  index: 0
+  gunSummoned: 0
+  gun:
+  - {fileID: 4522971684661582716, guid: b9dc578b649e4764c8435091f49f1b36, type: 3}
+  - {fileID: 574156491301855328, guid: eb765a49136f64a43890579295206c05, type: 3}
+  - {fileID: 8262139014882769478, guid: 6abbc57bd8452594dae4e1e6f0a1af89, type: 3}
   UI: {fileID: 0}
   isGrounded: 0
   groundCheck: {fileID: 676628032}
@@ -4088,6 +4078,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1517796183565843508, guid: 4bb9f41af44ffc14fbe2a8bcb1a6e820, type: 3}
+      propertyPath: DamageText
+      value: 
+      objectReference: {fileID: 1145557925408627793, guid: d2147364a2982c84d9b034a55803b59e, type: 3}
+    - target: {fileID: 1517796183565843508, guid: 4bb9f41af44ffc14fbe2a8bcb1a6e820, type: 3}
+      propertyPath: blood
+      value: 
+      objectReference: {fileID: 8487295823172091914, guid: 15da5113743aa904682bbf6ad5be9c4b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bb9f41af44ffc14fbe2a8bcb1a6e820, type: 3}
 --- !u!1 &440313919
