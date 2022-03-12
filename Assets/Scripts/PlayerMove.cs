@@ -19,6 +19,9 @@ public class PlayerMove : MonoBehaviour
     private GameObject getCurrentGun;
     private Transform playerTransform;
 
+    [SerializeField]
+    public GameObject UI;
+
     public bool FacingRight
     {
         get
@@ -41,6 +44,7 @@ public class PlayerMove : MonoBehaviour
     {
         playerTransform = GetComponent<Transform>();
         SetCurrentGun(gun[0]);
+        UI = GameObject.Find("UIManager");
     }
 
     private void FixedUpdate()
@@ -55,8 +59,8 @@ public class PlayerMove : MonoBehaviour
         {
             Jump();
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+            
+        if (Input.GetKeyDown(KeyCode.Alpha1) && GameObject.FindGameObjectsWithTag("Gun").Length == 0)
         {
             if(!gunSummoned)
             {
@@ -122,10 +126,15 @@ public class PlayerMove : MonoBehaviour
 
     public IEnumerator CastingGunSpell()
     {
-        isCasting = true;
-        SummonGun();
-        yield return new WaitForSeconds(1f);
-        isCasting = false;
+        if (UI.GetComponent<UIManager>().manaBar.ReturnVal() > .4)
+        {
+            UI.GetComponent<UIManager>().manaBar.Decrease(.4f);
+            isCasting = true;
+            SummonGun();
+            yield return new WaitForSeconds(1f);
+            isCasting = false;
+        }
+        else { UI.GetComponent<UIManager>().PopText("Mana"); }
     }
 
     void SummonGun()
