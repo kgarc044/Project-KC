@@ -367,6 +367,7 @@ MonoBehaviour:
   Health: 0
   DamageText: {fileID: 0}
   blood: {fileID: 0}
+  dust: {fileID: 0}
   checkRadius: 0.01
   edgeCheck: {fileID: 0}
   groundCheck: {fileID: 0}
