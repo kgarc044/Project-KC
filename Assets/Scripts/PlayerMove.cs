@@ -90,6 +90,16 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (!gunSummoned)
+            {
+                SetCurrentGun(gun[index + 3]);
+                StartCoroutine(CastingGunSpell());
+                gunSummoned = true;
+            }
+        }
+
     }
 
     void PMove()
