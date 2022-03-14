@@ -7,6 +7,7 @@ public abstract class GunBase : MonoBehaviour
     public float speed;
     public float distance;
     public int ammoTotal;
+    public int ammoMax;
 
     public bool isFlipped = false;
     public bool outOfAmmo;
@@ -15,12 +16,16 @@ public abstract class GunBase : MonoBehaviour
     private PlayerMove player;
     [SerializeField]
     private Transform playerTransform;
+    [SerializeField]
+    public GameObject UI;
 
     public void Start()
     {
         outOfAmmo = false;
         player = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
         playerTransform = GameObject.FindWithTag("Player").transform;
+        ammoMax = ammoTotal;
+        UI = GameObject.Find("UIManager");
     }
     public void FixedUpdate()
     {
@@ -36,12 +41,12 @@ public abstract class GunBase : MonoBehaviour
         {
             if (facingRight)
             {
-                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(1.5f, 0, 0), speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(1.0f, 0, 0), speed * Time.deltaTime);
             }
 
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(-1.5f, 0, 0), speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(-1.0f, 0, 0), speed * Time.deltaTime);
             }
 
             if (transform.position.x < playerTransform.position.x && !isFlipped)
@@ -61,4 +66,9 @@ public abstract class GunBase : MonoBehaviour
     public abstract void Special();
 
     public abstract void ThrowGun();
+
+    public void ReturnGunStatus()
+    {
+        player.gunSummoned = false;
+    }
 }

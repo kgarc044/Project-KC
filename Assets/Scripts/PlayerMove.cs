@@ -9,12 +9,18 @@ public class PlayerMove : MonoBehaviour
 
     public int playerSpeed = 15;
     public int playerJumpPower = 1250;
+    public int index = 0;
 
     private bool facingRight = true;
     private bool isCasting = false;
+    public bool gunSummoned;
 
-    public GameObject gun;
+    public GameObject[] gun;
+    private GameObject getCurrentGun;
     private Transform playerTransform;
+
+    [SerializeField]
+    public GameObject UI;
 
     public bool FacingRight
     {
@@ -37,6 +43,8 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         playerTransform = GetComponent<Transform>();
+        SetCurrentGun(gun[0]);
+        UI = GameObject.Find("UIManager");
     }
 
     private void FixedUpdate()
@@ -52,10 +60,36 @@ public class PlayerMove : MonoBehaviour
             Jump();
         }
             
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && GameObject.FindGameObjectsWithTag("Gun").Length == 0)
         {
-            StartCoroutine(CastingGunSpell());
+            if(!gunSummoned)
+            {
+                SetCurrentGun(gun[index]);
+                StartCoroutine(CastingGunSpell());
+                gunSummoned = true;
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (!gunSummoned)
+            {
+                SetCurrentGun(gun[index + 1]);
+                StartCoroutine(CastingGunSpell());
+                gunSummoned = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (!gunSummoned)
+            {
+                SetCurrentGun(gun[index + 2]);
+                StartCoroutine(CastingGunSpell());
+                gunSummoned = true;
+            }
+        }
+
     }
 
     void PMove()
@@ -92,21 +126,36 @@ public class PlayerMove : MonoBehaviour
 
     public IEnumerator CastingGunSpell()
     {
-        isCasting = true;
-        SummonGun();
-        yield return new WaitForSeconds(1f);
-        isCasting = false;
+        if (UI.GetComponent<UIManager>().manaBar.ReturnVal() > .4)
+        {
+            UI.GetComponent<UIManager>().manaBar.Decrease(.4f);
+            isCasting = true;
+            SummonGun();
+            yield return new WaitForSeconds(1f);
+            isCasting = false;
+        }
+        else { UI.GetComponent<UIManager>().PopText("Mana"); }
     }
 
     void SummonGun()
     {
         if (facingRight)
         {
-            Instantiate(gun, playerTransform.position + new Vector3(1.5f, 0, 0), playerTransform.rotation);
+            Instantiate(GetCurrentGun(), playerTransform.position + new Vector3(1.5f, 0, 0), playerTransform.rotation);
         }
         else
         {
-            Instantiate(gun, playerTransform.position + new Vector3(-1.5f, 0, 0), playerTransform.rotation * new Quaternion(0,-180f,0,0));
+            Instantiate(GetCurrentGun(), playerTransform.position + new Vector3(-1.5f, 0, 0), playerTransform.rotation * new Quaternion(0,-180f,0,0));
         }
+    }
+
+    public GameObject GetCurrentGun()
+    {
+        return getCurrentGun;
+    }
+
+    public void SetCurrentGun(GameObject gun)
+    {
+        getCurrentGun = gun;
     }
 }
