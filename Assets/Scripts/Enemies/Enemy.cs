@@ -41,6 +41,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void turn()
     {
+        Debug.Log("turn");
         transform.Rotate(0f, 180f, 0f);
         HealthCanvas.transform.right = new Vector3(1, 0, 0);
     }

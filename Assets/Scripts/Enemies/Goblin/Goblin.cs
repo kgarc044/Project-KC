@@ -63,9 +63,10 @@ public class Goblin : Enemy
         rb.velocity = new Vector2(0, rb.velocity.y);
         GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 100));
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
 
-        yield return new WaitUntil(() => isGrounded = true);
+        //wtf is this for idk so commented out for now
+        //yield return new WaitUntil(() => isGrounded = true);
         currentAction = "charging";
 
         yield return new WaitForSeconds(maxChargeDuration);
