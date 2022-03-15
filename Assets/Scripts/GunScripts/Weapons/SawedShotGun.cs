@@ -19,7 +19,7 @@ public class SawedShotGun : GunBase
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !UIManager.gameIsPaused)
         {
             if (canShoot)
             {
@@ -27,7 +27,7 @@ public class SawedShotGun : GunBase
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !UIManager.gameIsPaused)
         {
             Special();
         }

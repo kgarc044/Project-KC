@@ -18,7 +18,7 @@ public class FlintLockPistol : GunBase
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && !UIManager.gameIsPaused)
         {
             if (canShoot)
             {
@@ -26,7 +26,7 @@ public class FlintLockPistol : GunBase
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !UIManager.gameIsPaused)
         {
             Special();
         }

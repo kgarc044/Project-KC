@@ -5,20 +5,22 @@ using UnityEngine.UI;
 
 public class ResourceBar : MonoBehaviour
 {
-    private Resource re;
+    //private Resource re;
     public Image bar;
     public float regen;
 
     private void Start()
     {
-        //bar = transform.Find("Manabar").GetComponent<Image>();
-        //bar.fillAmount = .3f;
-        re = new Resource();
+        bar.fillAmount = .5f;
+        //re = new Resource();
     }
 
-    private void update()
+    void Update()
     {
-        bar.fillAmount += regen;
+        if (!UIManager.gameIsPaused)
+        {
+            bar.fillAmount += regen;
+        }
     }
 
     public void SetSize(float currentSize)
@@ -47,12 +49,12 @@ public class ResourceBar : MonoBehaviour
         return bar.fillAmount;
     }
 
-    /*public void Update()
+    /*void Update()
     {
         ReAmount += ReRegenAmount * Time.deltaTime;
     }*/
 
-    public class Resource
+    /*public class Resource
     {
         public const int RE_MAX = 100;
 
@@ -79,6 +81,6 @@ public class ResourceBar : MonoBehaviour
         {
             return ReAmount / RE_MAX;
         }
-    }
+    }*/
 
 }

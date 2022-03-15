@@ -39,22 +39,26 @@ public class UIManager : MonoBehaviour
         PMenuActive = false;
         gameIsPaused = false;
 
-        healthBar.SetSize(.5f);
-        manaBar.SetSize(.5f);
+        //healthBar.SetSize(.5f);
+        healthBar.SetRegen(.00005f);
+        //manaBar.SetSize(.5f);
         manaBar.SetRegen(.0002f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(manaBar.ReturnVal());
         CheckPauseMenu();
-        CheckKeyPress();
-        CheckHitpoints();
-        CheckGun();
-        if(fadeOut == true)
+        if (!gameIsPaused)
         {
-            FadeTxt();
+            CheckKeyPress();
+            CheckHitpoints();
+            CheckGun();
+            if (fadeOut == true)
+            {
+                FadeTxt();
+            }
         }
     }
 
@@ -90,7 +94,7 @@ public class UIManager : MonoBehaviour
                 //gunReset();
                 //Gun1.gameObject.SetActive(true);
                 manaBar.Decrease(.2f);
-                break;*/
+                break;
             case "2":
                 //gunReset();
                 //Gun2.gameObject.SetActive(true);
@@ -100,7 +104,7 @@ public class UIManager : MonoBehaviour
                 //gunReset();
                 //Gun3.gameObject.SetActive(true);
                 manaBar.Decrease(.4f);
-                break;
+                break;*/
             case "4":
                 //gunReset();
                 //Gun4.gameObject.SetActive(true);
@@ -135,9 +139,7 @@ public class UIManager : MonoBehaviour
             //LastSceneName = UnityEngine.SceneManagement.Scene.name;
             SceneManager.LoadScene(sceneName: "LoseMenu");
         }
-        healthBar.Increase(.00005f);
-        manaBar.Increase(.0002f);
-    }
+        }
 
     private void CheckGun()
     {

@@ -55,38 +55,41 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (!UIManager.gameIsPaused)
         {
-            Jump();
-        }
-            
-        if (Input.GetKeyDown(KeyCode.Alpha1) && GameObject.FindGameObjectsWithTag("Gun").Length == 0)
-        {
-            if(!gunSummoned)
+            if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                SetCurrentGun(gun[index]);
-                StartCoroutine(CastingGunSpell());
-                gunSummoned = true;
+                Jump();
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (!gunSummoned)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && GameObject.FindGameObjectsWithTag("Gun").Length == 0)
             {
-                SetCurrentGun(gun[index + 1]);
-                StartCoroutine(CastingGunSpell());
-                gunSummoned = true;
+                if (!gunSummoned)
+                {
+                    SetCurrentGun(gun[index]);
+                    StartCoroutine(CastingGunSpell());
+                    gunSummoned = true;
+                }
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (!gunSummoned)
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                SetCurrentGun(gun[index + 2]);
-                StartCoroutine(CastingGunSpell());
-                gunSummoned = true;
+                if (!gunSummoned)
+                {
+                    SetCurrentGun(gun[index + 1]);
+                    StartCoroutine(CastingGunSpell());
+                    gunSummoned = true;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (!gunSummoned)
+                {
+                    SetCurrentGun(gun[index + 2]);
+                    StartCoroutine(CastingGunSpell());
+                    gunSummoned = true;
+                }
             }
         }
 
