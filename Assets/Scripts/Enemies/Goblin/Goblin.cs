@@ -5,15 +5,14 @@ using UnityEngine;
 public class Goblin : Enemy
 {
     string currentAction;
-    float maxChargeDuration;
+    public float maxChargeDuration;
+
+
     // Start is called before the first frame update
     void Start()
     {
         currentAction = "moving";
-        Speed = 3f;
-        maxHealth = 220f;
         Health = maxHealth;
-        maxChargeDuration = 5f;
     }
 
     // Update is called once per frame
@@ -30,6 +29,7 @@ public class Goblin : Enemy
         }
         else if(currentAction == "charging")
         {
+            createDust();
             chargeattack();
         }
 
@@ -44,7 +44,6 @@ public class Goblin : Enemy
             StopCoroutine("attack");
             currentAction = "moving";
         }
-        //Debug.Log(new Vector2(transform.right.x * Speed * 2f, rb.velocity.y));
         rb.velocity = new Vector2(transform.right.x * Speed * 2f, rb.velocity.y);
     }
 
@@ -64,9 +63,10 @@ public class Goblin : Enemy
         rb.velocity = new Vector2(0, rb.velocity.y);
         GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 100));
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
 
-        yield return new WaitUntil(() => isGrounded = true);
+        //wtf is this for idk so commented out for now
+        //yield return new WaitUntil(() => isGrounded = true);
         currentAction = "charging";
 
         yield return new WaitForSeconds(maxChargeDuration);
@@ -94,5 +94,10 @@ public class Goblin : Enemy
             Debug.DrawRay(front.position, transform.right * 10f, Color.red);
         }
         return false;
+    }
+
+    public void createDust()
+    {
+        Instantiate(dust, groundCheck.position, Quaternion.identity);
     }
 }

@@ -84,7 +84,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3333334, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -124,18 +124,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01052767, y: 0.00041115284}
+  m_Offset: {x: -0.01052767, y: -0.019919395}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.3333334, y: 1.3333334}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.3333334, y: 1.3333334}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6778717, y: 1.0011044}
+  m_Size: {x: 0.6778717, y: 0.96044326}
   m_EdgeRadius: 0
 --- !u!114 &1517796183565843508
 MonoBehaviour:
@@ -149,9 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96869f57786706840ae72686ebea0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  maxHealth: 0
+  Speed: 3
+  maxHealth: 220
   Health: 0
+  DamageText: {fileID: 1145557925408627793, guid: d2147364a2982c84d9b034a55803b59e, type: 3}
+  blood: {fileID: 8487295823172091914, guid: 15da5113743aa904682bbf6ad5be9c4b, type: 3}
+  dust: {fileID: 2215659223725419781, guid: 9e373c00fadebe74ebf599d712ead0e8, type: 3}
   checkRadius: 0.01
   edgeCheck: {fileID: 1517796183386007457}
   groundCheck: {fileID: 5547581411351476518}
@@ -165,6 +168,7 @@ MonoBehaviour:
   HealthCanvas: {fileID: 1517796182809617976}
   hp: {fileID: 1517796183194733103}
   hpeffect: {fileID: 1517796182907349591}
+  maxChargeDuration: 5
 --- !u!95 &1400788747788097083
 Animator:
   serializedVersion: 3

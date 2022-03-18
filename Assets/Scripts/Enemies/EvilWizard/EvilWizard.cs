@@ -13,12 +13,8 @@ public class EvilWizard : Enemy
     void Start()
     {
         //Evil wizard presets
-        fireRate = 1f;
         canShoot = true;
-        Speed = 1f;
-        maxHealth = 100f;
         Health = maxHealth;
-        bulletSpeed = 3f;
     }
 
     void FixedUpdate()
@@ -38,14 +34,11 @@ public class EvilWizard : Enemy
 
     public override void move()
     {
-        if ((rb.velocity.x < 0.01 && rb.velocity.x > 0) || edge)
+        if ((rb.velocity.x < 0.01 && rb.velocity.x > 0) || (isGrounded && edge))
         {
             turn();
         }
-        else
-        {
-            rb.velocity = new Vector2(transform.right.x * Speed, rb.velocity.y);
-        }
+        rb.velocity = new Vector2(transform.right.x * Speed, rb.velocity.y);
     }
 
     public override IEnumerator attack()
