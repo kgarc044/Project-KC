@@ -13,7 +13,7 @@ public abstract class GunBase : MonoBehaviour
     public bool outOfAmmo;
 
     [SerializeField]
-    private PlayerMove player;
+    public PlayerMove player;
     [SerializeField]
     private Transform playerTransform;
     [SerializeField]

@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class ResourceBar : MonoBehaviour
 {
     //private Resource re;
-    public Image bar;
+    /*public Image bar;
     public float regen;
 
     private void Start()
     {
-        bar.fillAmount = .5f;
+        //bar.fillAmount = .5f;
+        bar = transform.Find("Bar").GetComponent<Image>();
         //re = new Resource();
     }
 
@@ -42,19 +43,19 @@ public class ResourceBar : MonoBehaviour
     public void Decrease(float reduce)
     {
         bar.fillAmount -= reduce;
-    }
+    }*/
 
-    public float ReturnVal()
+    /*public float ReturnVal()
     {
         return bar.fillAmount;
     }
 
-    /*void Update()
+    void Update()
     {
         ReAmount += ReRegenAmount * Time.deltaTime;
     }*/
-
-    /*public class Resource
+}
+    public class Resource
     {
         public const int RE_MAX = 100;
 
@@ -66,21 +67,46 @@ public class ResourceBar : MonoBehaviour
             ReAmount = 100;
             ReRegenAmount = 0;
         }
+        public Resource(float amount, float regen)
+        {
+            ReAmount = amount;
+            ReRegenAmount = regen;
+        }
 
         public void Update()
         {
-            ReAmount += ReRegenAmount * Time.deltaTime;
+            ReAmount += ReRegenAmount;
+            if (ReAmount > 1) ReAmount = 1;
         }
 
-        public void SetRegen(float RegenNum)
+        public void SetRegen(float Regen)
         {
-            ReRegenAmount = RegenNum;
+            ReRegenAmount = Regen;
         }
 
-        public float GetNormalized()
+        public void SetResource(float Resource)
+        {
+            ReAmount = Resource;
+        }
+
+        public void Increase(float incriment)
+        {
+            ReAmount += incriment;
+            if (ReAmount > 1) ReAmount = 1;
+        }
+
+        public void Decrease(float reduce)
+        {
+            ReAmount -= reduce;
+            if (ReAmount < 0) ReAmount = 0;
+        }
+
+        public float ReturnResource() { return ReAmount; }
+        public float ReturnRegen() { return ReRegenAmount; }
+        /*public float GetNormalized()
         {
             return ReAmount / RE_MAX;
-        }
-    }*/
+        }*/
+    }
 
-}
+
