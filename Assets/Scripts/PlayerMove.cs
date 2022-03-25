@@ -10,6 +10,8 @@ public class PlayerMove : MonoBehaviour
     public int playerSpeed = 15;
     public int playerJumpPower = 1250;
     public int index = 0;
+    public Resource health = new Resource();
+    public Resource mana = new Resource();
 
     private bool facingRight = true;
     private bool isCasting = false;
@@ -20,7 +22,9 @@ public class PlayerMove : MonoBehaviour
     private Transform playerTransform;
 
     [SerializeField]
-    public GameObject UI;
+    private GameObject UI;
+    [SerializeField]
+    private GameObject Player;
 
     public bool FacingRight
     {
@@ -44,7 +48,14 @@ public class PlayerMove : MonoBehaviour
     {
         playerTransform = GetComponent<Transform>();
         SetCurrentGun(gun[0]);
+
         UI = GameObject.Find("UIManager");
+        Player = GameObject.Find("Player");
+
+        health.SetResource(.5f);
+        health.SetRegen(.00005f);
+        mana.SetResource(.5f);
+        mana.SetRegen(.0002f);
     }
 
     private void FixedUpdate()
@@ -57,6 +68,8 @@ public class PlayerMove : MonoBehaviour
     {
         if (!UIManager.gameIsPaused)
         {
+            StopCoroutine(CastingGunSpell());
+
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
                 Jump();
@@ -64,11 +77,12 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha1) && GameObject.FindGameObjectsWithTag("Gun").Length == 0)
             {
+                //Debug.Log("precast1");
                 if (!gunSummoned)
                 {
+                    //Debug.Log("precast2");
                     SetCurrentGun(gun[index]);
                     StartCoroutine(CastingGunSpell());
-                    gunSummoned = true;
                 }
             }
 
@@ -78,7 +92,6 @@ public class PlayerMove : MonoBehaviour
                 {
                     SetCurrentGun(gun[index + 1]);
                     StartCoroutine(CastingGunSpell());
-                    gunSummoned = true;
                 }
             }
 
@@ -88,7 +101,6 @@ public class PlayerMove : MonoBehaviour
                 {
                     SetCurrentGun(gun[index + 2]);
                     StartCoroutine(CastingGunSpell());
-                    gunSummoned = true;
                 }
             }
         }
@@ -99,7 +111,6 @@ public class PlayerMove : MonoBehaviour
             {
                 SetCurrentGun(gun[index + 3]);
                 StartCoroutine(CastingGunSpell());
-                gunSummoned = true;
             }
         }
 
@@ -139,15 +150,22 @@ public class PlayerMove : MonoBehaviour
 
     public IEnumerator CastingGunSpell()
     {
-        if (UI.GetComponent<UIManager>().manaBar.ReturnVal() > .4)
+        if (mana.ReturnResource() > .4)
         {
-            UI.GetComponent<UIManager>().manaBar.Decrease(.4f);
+            Debug.Log("gun cast");
             isCasting = true;
             SummonGun();
+            mana.Decrease(.4f);
             yield return new WaitForSeconds(1f);
             isCasting = false;
+            gunSummoned = true;
         }
-        else { UI.GetComponent<UIManager>().PopText("Mana"); }
+        else 
+        { 
+            UI.GetComponent<UIManager>().PopText("Mana");
+            Debug.Log("gun fail cast");
+            gunSummoned = false;
+        }
     }
 
     void SummonGun()

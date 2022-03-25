@@ -55,12 +55,12 @@ public class FlintLockPistol : GunBase
 
     public override void Special()
     {
-        if (UI.GetComponent<UIManager>().manaBar.ReturnVal() > .4)
+        if (player.mana.ReturnResource() > .4)
         {
             Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, 0.2f, 0), firePoint.rotation);
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Instantiate(bulletPrefab, firePoint.position + new Vector3(0f, -0.2f, 0), firePoint.rotation);
-            UI.GetComponent<UIManager>().manaBar.Decrease(.4f);
+            player.mana.Decrease(.4f);
         }
         else { UI.GetComponent<UIManager>().PopText("Mana");}
     }
