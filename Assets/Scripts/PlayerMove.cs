@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     public int index = 0;
     public Resource health = new Resource();
     public Resource mana = new Resource();
+    private Inventory inventory;
 
     private bool facingRight = true;
     private bool isCasting = false;
@@ -25,6 +26,8 @@ public class PlayerMove : MonoBehaviour
     private GameObject UI;
     [SerializeField]
     private GameObject Player;
+    [SerializeField] 
+    private UI_Inventory uiInventory;
 
     public bool FacingRight
     {
@@ -56,6 +59,8 @@ public class PlayerMove : MonoBehaviour
         health.SetRegen(.00005f);
         mana.SetResource(.5f);
         mana.SetRegen(.0002f);
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
     }
 
     private void FixedUpdate()
