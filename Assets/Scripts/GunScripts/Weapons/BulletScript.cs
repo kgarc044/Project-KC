@@ -21,7 +21,7 @@ public class BulletScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Enemy e = collision.gameObject.GetComponent<Enemy>();
-            e.takeDamage(damage);
+            e.takeDamage(damage, this.transform.position);
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.tag == "Ground")
