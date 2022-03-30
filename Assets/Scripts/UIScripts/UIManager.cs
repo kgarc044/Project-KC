@@ -13,16 +13,22 @@ public class UIManager : MonoBehaviour
     public  GameObject InvMenu;
     //public GameObject Gun1, Gun2, Gun3, Gun4, Gun5;
     public  GameObject gunImg;
-    private GameObject activeGun;
     public  GameObject noGunText;
-    
+    private GameObject activeGun;
+    [SerializeField]
+    private GameObject Player;
+
+
+    public Image manaBar;
+    public Image healthBar;
+
     public CanvasGroup Messages;
 
     public Boolean PMenuActive;
     public static bool gameIsPaused;
 
-    [SerializeField] public ResourceBar healthBar;
-    [SerializeField] public ResourceBar manaBar;
+    /*[SerializeField] public ResourceBar healthBar;
+    [SerializeField] public ResourceBar manaBar;*/
 
     public Text ammoCount;
 
@@ -39,22 +45,30 @@ public class UIManager : MonoBehaviour
         PMenuActive = false;
         gameIsPaused = false;
 
-        healthBar.SetSize(.5f);
-        manaBar.SetSize(.5f);
-        manaBar.SetRegen(.0002f);
+        Player = GameObject.Find("Player");
+
+        //healthBar.SetSize(.5f);
+        //healthBar.SetRegen(.00005f);
+        //manaBar.SetSize(.5f);
+        //manaBar.SetRegen(.0002f);
+        manaBar.fillAmount = Player.GetComponent<PlayerMove>().mana.ReturnResource();
+        healthBar.fillAmount = Player.GetComponent<PlayerMove>().health.ReturnResource();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(manaBar.ReturnVal());
         CheckPauseMenu();
-        CheckKeyPress();
-        CheckHitpoints();
-        CheckGun();
-        if(fadeOut == true)
+        if (!gameIsPaused)
         {
-            FadeTxt();
+            CheckKeyPress();
+            CheckHitpoints();
+            CheckGun();
+            if (fadeOut == true)
+            {
+                FadeTxt();
+            }
         }
     }
 
@@ -87,57 +101,49 @@ public class UIManager : MonoBehaviour
         switch (input)
         {
             /*case "1":
-                //gunReset();
-                //Gun1.gameObject.SetActive(true);
                 manaBar.Decrease(.2f);
-                break;*/
+                break;
             case "2":
-                //gunReset();
-                //Gun2.gameObject.SetActive(true);
                 manaBar.Decrease(.3f);
                 break;
             case "3":
-                //gunReset();
-                //Gun3.gameObject.SetActive(true);
                 manaBar.Decrease(.4f);
                 break;
             case "4":
-                //gunReset();
-                //Gun4.gameObject.SetActive(true);
-                manaBar.Decrease(.5f);
-                break;
+                Player.GetComponent<PlayerMove>().mana.Decrease(.5f);
+                break;*/
             case "5":
-                //gunReset();
-                //Gun5.gameObject.SetActive(true);
-                manaBar.Decrease(.6f);
+                Player.GetComponent<PlayerMove>().mana.Decrease(.6f);
                 break;/**/
             case "6":
-                healthBar.Increase(.1f);
+                Player.GetComponent<PlayerMove>().health.Increase(.1f);
                 break;
             case "7":
-                healthBar.Decrease(.1f);
+                Player.GetComponent<PlayerMove>().health.Decrease(.2f);
                 break;
             case "8":
-                manaBar.Increase(.1f);
+                Player.GetComponent<PlayerMove>().mana.Increase(.2f);
                 break;
             /*case "9":
-                manaBar.Decrease(.1f);
+                Player.GetComponent<PlayerMove>().mana.Decrease(.1f);
                 break;*/
         }
     }
 
     private void CheckHitpoints()
     {
+        manaBar.fillAmount = Player.GetComponent<PlayerMove>().mana.ReturnResource();
+        healthBar.fillAmount = Player.GetComponent<PlayerMove>().health.ReturnResource();
+        Player.GetComponent<PlayerMove>().health.Update();
+        Player.GetComponent<PlayerMove>().mana.Update();
 
-        if (healthBar.ReturnVal() == 0)
+        if (Player.GetComponent<PlayerMove>().health.ReturnResource() == 0)
         {
             //LastScene = SceneManager.GetActiveScene();
             //LastSceneName = UnityEngine.SceneManagement.Scene.name;
             SceneManager.LoadScene(sceneName: "LoseMenu");
         }
-        healthBar.Increase(.00005f);
-        manaBar.Increase(.0002f);
-    }
+        }
 
     private void CheckGun()
     {

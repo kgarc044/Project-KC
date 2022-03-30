@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UZI : GunBase
+public class AK47 : GunBase
 {
     public float cooldownTime = 0.2f;
     public bool canShoot = true;
@@ -16,27 +16,21 @@ public class UZI : GunBase
     public int bulletCount;
     public float maxY;
     public float minY;
-    public Animator animatorController;
 
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && !UIManager.gameIsPaused)
+        if (Input.GetButton("Fire1"))
         {
             if (canShoot)
             {
-                animatorController.SetBool("IsShooting", true);
                 StartCoroutine(ShootDelay());
-                
+
 
             }
         }
-        else
-        {
-            animatorController.SetBool("IsShooting", false);
-        }
 
-        if (Input.GetKeyDown(KeyCode.F) && !UIManager.gameIsPaused)
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Special();
         }
@@ -48,11 +42,11 @@ public class UZI : GunBase
         if (ammoTotal > 0)
         {
             GameObject projectileInstance;
-            
+
             projectileInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             projectileInstance.GetComponent<Rigidbody2D>().
             AddForce(firePoint.up + new Vector3(0f, Random.Range(minY, maxY), 0f));
-            
+
 
             ammoTotal--;
         }
@@ -65,7 +59,7 @@ public class UZI : GunBase
 
     public IEnumerator ShootDelay()
     {
-        
+
         Shoot();
         canShoot = false;
         yield return new WaitForSeconds(cooldownTime);

@@ -3744,6 +3744,7 @@ MonoBehaviour:
   - {fileID: 4522971684661582716, guid: b9dc578b649e4764c8435091f49f1b36, type: 3}
   - {fileID: 574156491301855328, guid: eb765a49136f64a43890579295206c05, type: 3}
   - {fileID: 8262139014882769478, guid: 6abbc57bd8452594dae4e1e6f0a1af89, type: 3}
+  - {fileID: 873490454783967476, guid: c0dce0127f6db9945942330a855db8be, type: 3}
   UI: {fileID: 0}
   isGrounded: 0
   groundCheck: {fileID: 676628032}
@@ -5234,10 +5235,10 @@ MonoBehaviour:
   InvMenu: {fileID: 1244175181}
   gunImg: {fileID: 1112410435}
   noGunText: {fileID: 39646695}
+  manaBar: {fileID: 1295521829}
+  healthBar: {fileID: 995022705}
   Messages: {fileID: 1423671463}
   PMenuActive: 0
-  healthBar: {fileID: 1556721388}
-  manaBar: {fileID: 293480796}
   ammoCount: {fileID: 1242940114}
 --- !u!4 &669460696
 Transform:
@@ -6808,7 +6809,7 @@ GameObject:
   - component: {fileID: 995022706}
   - component: {fileID: 995022705}
   m_Layer: 5
-  m_Name: Bar
+  m_Name: HBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7625,7 +7626,7 @@ GameObject:
   - component: {fileID: 1295521830}
   - component: {fileID: 1295521829}
   m_Layer: 5
-  m_Name: Bar
+  m_Name: MBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

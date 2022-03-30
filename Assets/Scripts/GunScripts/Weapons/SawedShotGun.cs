@@ -19,7 +19,7 @@ public class SawedShotGun : GunBase
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !UIManager.gameIsPaused)
         {
             if (canShoot)
             {
@@ -27,7 +27,7 @@ public class SawedShotGun : GunBase
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !UIManager.gameIsPaused)
         {
             Special();
         }
@@ -63,10 +63,11 @@ public class SawedShotGun : GunBase
 
     public override void Special()
     {
-        if (UI.GetComponent<UIManager>().manaBar.ReturnVal() > .4)
+        if (player.mana.ReturnResource() > .4)
         {
-            UI.GetComponent<UIManager>().manaBar.Decrease(.4f);
-        }
+             player.mana.Decrease(.4f);
+
+        }/**/
     }
 
     public override void ThrowGun()
