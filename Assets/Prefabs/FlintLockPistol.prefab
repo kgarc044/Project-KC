@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6208378781380734353}
   - component: {fileID: 5001719179772620856}
   m_Layer: 0
-  m_Name: Flintlock
+  m_Name: FlintLockPistol
   m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 3903598988886284962, guid: db60bc678d7bb7e4496ffcc89d67862c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   outOfAmmo: 1
   player: {fileID: 0}
   playerTransform: {fileID: 0}
+  UI: {fileID: 0}
   cooldownTime: 1
   canShoot: 1
   firePoint: {fileID: 4522971686070196552}

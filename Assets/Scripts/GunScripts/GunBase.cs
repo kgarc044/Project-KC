@@ -14,13 +14,14 @@ public abstract class GunBase : MonoBehaviour
 
     [SerializeField]
     public PlayerMove player;
-    [SerializeField]
-    private Transform playerTransform;
+    public Transform playerTransform;
     [SerializeField]
     public GameObject UI;
+    public Rigidbody2D playerRB;
 
     public void Start()
     {
+        playerRB = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
         outOfAmmo = false;
         player = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
         playerTransform = GameObject.FindWithTag("Player").transform;

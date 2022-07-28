@@ -143,6 +143,7 @@ public class PlayerMove : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(new Vector2(0, playerJumpPower));
     }
 
+
     void CheckForGround()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatisGround);
