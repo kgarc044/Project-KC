@@ -19,6 +19,7 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject[] gun;
     private GameObject getCurrentGun;
+    public GameObject instantiatedGun;
     private Transform playerTransform;
 
     [SerializeField]
@@ -123,7 +124,7 @@ public class PlayerMove : MonoBehaviour
         if (moveX < 0.0f && FacingRight)
         {
             this.FacingRight = !FacingRight;
-            //Debug.Log(facingRight);
+            Debug.Log(facingRight);
             transform.Rotate(0f, 180f, 0f);
         }
 
@@ -173,11 +174,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (facingRight)
         {
-            Instantiate(GetCurrentGun(), playerTransform.position + new Vector3(1.5f, 0, 0), playerTransform.rotation);
+            instantiatedGun = Instantiate(GetCurrentGun(), playerTransform.position + new Vector3(1.5f, 0, 0), playerTransform.rotation) as GameObject;
+            //Instantiate(GetCurrentGun(), playerTransform.position + new Vector3(1.5f, 0, 0), playerTransform.rotation);
         }
         else
         {
-            Instantiate(GetCurrentGun(), playerTransform.position + new Vector3(-1.5f, 0, 0), playerTransform.rotation * new Quaternion(0,-180f,0,0));
+            instantiatedGun = Instantiate(GetCurrentGun(), playerTransform.position + new Vector3(1.5f, 0, 0), playerTransform.rotation) as GameObject;
+            //Instantiate(GetCurrentGun(), playerTransform.position + new Vector3(-1.5f, 0, 0), playerTransform.rotation * new Quaternion(0,-180f,0,0));
         }
     }
 

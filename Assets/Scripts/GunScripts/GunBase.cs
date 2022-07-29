@@ -11,6 +11,7 @@ public abstract class GunBase : MonoBehaviour
 
     public bool isFlipped = false;
     public bool outOfAmmo;
+    public bool gunSpawned = false;
 
     [SerializeField]
     public PlayerMove player;
@@ -27,7 +28,8 @@ public abstract class GunBase : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").transform;
         ammoMax = ammoTotal;
         UI = GameObject.Find("UIManager");
-    }
+        gunSpawned = true;
+}
     public void FixedUpdate()
     {
         FollowPlayer(player.FacingRight);
@@ -49,7 +51,7 @@ public abstract class GunBase : MonoBehaviour
             {
                 transform.position = Vector2.MoveTowards(transform.position, playerTransform.position + new Vector3(-1.0f, 0, 0), speed * Time.deltaTime);
             }
-
+            
             if (transform.position.x < playerTransform.position.x && !isFlipped)
             {
                 transform.Rotate(0f, 180f, 0f);
