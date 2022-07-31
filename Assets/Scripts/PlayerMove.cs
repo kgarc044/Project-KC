@@ -59,8 +59,19 @@ public class PlayerMove : MonoBehaviour
         health.SetRegen(.00005f);
         mana.SetResource(.5f);
         mana.SetRegen(.0002f);
+
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
+
+        ItemWorld.SpawnItemWorld(new Vector3(1, 2), new Item { itemType = Item.ItemType.HealthPotion, quantity = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(2, 3), new Item { itemType = Item.ItemType.ManaPotion, quantity = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(3, 4), new Item { itemType = Item.ItemType.Gold, quantity = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(4, 2), new Item { itemType = Item.ItemType.HealthPotion, quantity = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(5, 3), new Item { itemType = Item.ItemType.ManaPotion, quantity = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(6, 4), new Item { itemType = Item.ItemType.Gold, quantity = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(7, 2), new Item { itemType = Item.ItemType.HealthPotion, quantity = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(8, 3), new Item { itemType = Item.ItemType.ManaPotion, quantity = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(9, 4), new Item { itemType = Item.ItemType.Gold, quantity = 1 });
     }
 
     private void FixedUpdate()
@@ -193,5 +204,15 @@ public class PlayerMove : MonoBehaviour
     public void SetCurrentGun(GameObject gun)
     {
         getCurrentGun = gun;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
+        if(itemWorld != null)
+        {
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+        }
     }
 }
