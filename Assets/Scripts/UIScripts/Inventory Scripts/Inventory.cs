@@ -14,9 +14,14 @@ public class Inventory : MonoBehaviour
     {
         itemList = new List<Item>();
 
-        AddItem(new Item { itemType = Item.ItemType.HealthPotion, quantity = 1 });
-        AddItem(new Item { itemType = Item.ItemType.ManaPotion, quantity = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Gold, quantity = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.HealthPotion, quantity = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.ManaPotion, quantity = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.Gold, quantity = 1 });
+        AddItem(new Item { itemType = Item.ItemType.Flintlock, quantity = 1 });
+        AddItem(new Item { itemType = Item.ItemType.Shotgun, quantity = 1 });
+        AddItem(new Item { itemType = Item.ItemType.Uzi, quantity = 1 });
+        AddItem(new Item { itemType = Item.ItemType.Rifle, quantity = 1 });
+        AddItem(new Item { itemType = Item.ItemType.Rpg, quantity = 1 });
         Debug.Log("Inventory");
     }
 

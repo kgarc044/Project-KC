@@ -38,8 +38,9 @@ public class UI_Inventory : MonoBehaviour
             if (child == itemSlotTemplate) continue;
             Destroy(child.gameObject);
         }
-        int x = -2;
-        int y = 1;
+        float x = -4.5f;
+        float y = 0.5f;
+        int count = 1;
         float itemSlotCellSize = 50f;
         foreach (Item item in inventory.GetItemList())
         {
@@ -50,21 +51,24 @@ public class UI_Inventory : MonoBehaviour
             Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
             image.sprite = item.GetSprite();
 
-            TextMeshProUGUI uiText = itemSlotRectTransform.Find("quantityText").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI countText = itemSlotRectTransform.Find("quantityText").GetComponent<TextMeshProUGUI>();
             if(item.quantity > 1)
             {
-                uiText.SetText(item.quantity.ToString());
+                countText.SetText(item.quantity.ToString());
             }
             else
             {
-                uiText.SetText("");
+                countText.SetText("");
             }
+            TextMeshProUGUI useText = itemSlotRectTransform.Find("useNum").GetComponent<TextMeshProUGUI>();
+            useText.SetText(count.ToString());
 
 
             x++;
-            if(x > 2)
+            count++;
+            if(x > 4.5)
             {
-                x = -2;
+                x = -4.5f;
                 y--;
             }
         }

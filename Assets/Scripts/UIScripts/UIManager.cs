@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
             //LastSceneName = UnityEngine.SceneManagement.Scene.name;
             SceneManager.LoadScene(sceneName: "LoseMenu");
         }
-        }
+    }
 
     private void CheckGun()
     {
@@ -199,8 +199,8 @@ public class UIManager : MonoBehaviour
                 Application.Quit();
                 break;
             case "InventoryButton":
-                PauseMenu.gameObject.SetActive(false);
-                InvMenu.gameObject.SetActive(true);
+                //PauseMenu.gameObject.SetActive(false);
+                //InvMenu.gameObject.SetActive(true);
                 break;
             case "InvBackButton":
                 InvMenu.gameObject.SetActive(false);

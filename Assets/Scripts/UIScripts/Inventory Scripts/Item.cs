@@ -10,6 +10,11 @@ public class Item : MonoBehaviour
         ManaPotion,
         Gold,
         Gun,
+        Flintlock,
+        Shotgun,
+        Uzi,
+        Rifle,
+        Rpg
     }
 
     public ItemType itemType;
@@ -24,6 +29,11 @@ public class Item : MonoBehaviour
             case ItemType.HealthPotion:     return ItemAssets.Instance.healthPotionSprite;
             case ItemType.ManaPotion:       return ItemAssets.Instance.manaPotionSprite;
             case ItemType.Gold:             return ItemAssets.Instance.goldSprite;
+            case ItemType.Flintlock:        return ItemAssets.Instance.flintlockSprite;
+            case ItemType.Shotgun:          return ItemAssets.Instance.shotgunSprite;
+            case ItemType.Uzi:              return ItemAssets.Instance.uziSprite;
+            case ItemType.Rifle:            return ItemAssets.Instance.ak47Sprite;
+            case ItemType.Rpg:              return ItemAssets.Instance.rpgSprite;
         }
     }
 

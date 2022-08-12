@@ -17,5 +17,10 @@ public class ItemAssets : MonoBehaviour
     public Sprite healthPotionSprite;
     public Sprite manaPotionSprite;
     public Sprite goldSprite;
+    public Sprite flintlockSprite;
+    public Sprite shotgunSprite;
+    public Sprite uziSprite;
+    public Sprite ak47Sprite;
+    public Sprite rpgSprite;
 
 }
