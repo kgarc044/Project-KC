@@ -3522,6 +3522,7 @@ MonoBehaviour:
   test: {fileID: 5161248617004979544, guid: a4106d534cdb64e439df90e1b5d7f9b9, type: 3}
   bulletSpeed: 5
   detect: {fileID: 751115066}
+  animator: {fileID: 751115069}
   phase: 0
 --- !u!61 &751115065
 BoxCollider2D:
@@ -7267,7 +7268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1662353349
 RectTransform:
   m_ObjectHideFlags: 0
