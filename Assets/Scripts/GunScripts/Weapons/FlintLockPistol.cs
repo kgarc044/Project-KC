@@ -69,6 +69,7 @@ public class FlintLockPistol : GunBase
     {
         outOfAmmo = true;
         gunCollider.enabled = true;
+        gunSpawned = false;
         ReturnGunStatus();
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Rigidbody2D>().AddForce(transform.right * 1000f);
