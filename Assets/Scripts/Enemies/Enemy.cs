@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
-    // currently only used for bosses
-    public string name;
-
     public float Speed;
     public float maxHealth;
     public float Health;
@@ -24,9 +21,7 @@ public abstract class Enemy : MonoBehaviour
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool edge;
 
-    // If we're creating a boss, reference HUD instead of creating a local canvas (we should probably do this in start instead of dragging in)
     public Canvas HealthCanvas;
-    public Text BossName;
     public Image hp; // This is the red hp image
     public Image hpeffect; // This is used to create the white health effect
 
@@ -51,12 +46,12 @@ public abstract class Enemy : MonoBehaviour
         HealthCanvas.transform.right = new Vector3(1, 0, 0);
     }
 
-    public void takeDamage(int damage, Vector3 hitlocation)
+    public void takeDamage(int damage)
     {
         Health -= damage;
         if (DamageText && blood)
         {
-            StartCoroutine(calculateDamage(damage, hitlocation));
+            StartCoroutine(calculateDamage(damage));
         }
         if (Health <= 0)
         {
@@ -64,10 +59,9 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    // Show damage does blood effect, and number damage. Does not effect health bar UI.
-    public IEnumerator ShowDamage(int damage, Vector3 hitlocation)
+    public IEnumerator ShowDamage(int damage)
     {
-        Instantiate(blood, hitlocation, Quaternion.identity);
+        Instantiate(blood, transform.position, Quaternion.identity);
         if (dmgtext == null)
         {
             dmgtext = Instantiate(DamageText, transform.position, Quaternion.identity);
@@ -79,44 +73,37 @@ public abstract class Enemy : MonoBehaviour
 
     public void die()
     {
-        Destroy(HealthCanvas.gameObject);
         Destroy(gameObject);
     }
 
-
-    // Control of the health bar UI
-    public virtual void setHealthbar()
+    public void setHealthbar()
     {
         HealthCanvas.gameObject.SetActive(Health < maxHealth);
-        calculateHealthbar();
-    }
 
-    public void calculateHealthbar()
-    {
         hp.fillAmount = Health / maxHealth;
 
-        if (hpeffect.fillAmount > hp.fillAmount)
+        if(hpeffect.fillAmount > hp.fillAmount)
         {
-            hpeffect.fillAmount -= 0.005f;
+            hpeffect.fillAmount -= 0.01f;
         }
         else
         {
             hpeffect.fillAmount = hp.fillAmount;
         }
+
     }
-    
-    // Checks the front edge and floor for the enemy
+
     public void checkFloor()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, ground);
         edge = !Physics2D.OverlapCircle(edgeCheck.position, checkRadius, ground);
     }
 
-    public IEnumerator calculateDamage(int damage, Vector3 hitlocation)
+    public IEnumerator calculateDamage(int damage)
     {
         damageTotal += damage;
         yield return new WaitForSeconds(.1f);
-        StartCoroutine(ShowDamage(damageTotal, hitlocation));
+        StartCoroutine(ShowDamage(damageTotal));
         damageTotal = 0;
     }
 

@@ -16,8 +16,10 @@ public class UZI : GunBase
     public int bulletCount;
     public float maxY;
     public float minY;
+    public float dashTime = 0;
+    public float startDashTime = 0.1f;
+    public float dashSpeed;
     public Animator animatorController;
-
 
     void Update()
     {
@@ -74,10 +76,28 @@ public class UZI : GunBase
 
     public override void Special()
     {
-        if (player.mana.ReturnResource() > .4)
+        if (player.mana.ReturnResource() > .1)
         {
-             player.mana.Decrease(.4f);
+            player.mana.Decrease(.1f);
+            //player.playerSpeed = player.playerSpeed * 10;
+            //playerRB.bodyType = RigidbodyType2D.Kinematic;
+            //playerRB.velocity = playerTransform.right * 100000f;
+            playerRB.transform.position = Vector3.Lerp(playerRB.transform.position, playerRB.transform.position
+              + playerRB.transform.right * 2f , 1);
+            
+
+
+
+           ammoTotal = 10;
         }/**/
+
+        StartCoroutine(SpecialDelay());
+    }
+
+    public IEnumerator SpecialDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        player.playerSpeed = 5;
     }
 
     public override void ThrowGun()
