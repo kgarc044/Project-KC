@@ -12,20 +12,16 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        Shoot(); 
-    }
-
-    void Shoot()
-    {
         bulletRB.velocity = transform.right * speed;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.tag == "Enemy")
         {
             Enemy e = collision.gameObject.GetComponent<Enemy>();
-            e.takeDamage(damage);
+            e.takeDamage(damage, this.transform.position);
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.tag == "Ground")
