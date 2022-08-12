@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class WizardBoss : Enemy
 {
-    private GameObject player;
+    [HideInInspector]public GameObject player;
+
+    public GameObject fireball;
+    public GameObject test;
+    public float bulletSpeed;
+
+    public Collider2D detect;
+    public Animator animator;
     public int phase;
 
     // Start is called before the first frame update
@@ -12,13 +19,15 @@ public class WizardBoss : Enemy
     {
         Health = maxHealth;
         player = GameObject.FindWithTag("Player");
+        BossName.text = name;
+        phase = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         // create sleep phase and wait for player
-        if (phase == 0 && detectPlayer() == true)
+        if (phase == 1)
         {
             phase++;
         }
@@ -41,21 +50,22 @@ public class WizardBoss : Enemy
 
     public override bool detectPlayer()
     {
-        float distance = Vector3.Distance(player.transform.position, this.transform.position);
-        //Debug.Log(distance);
-        if(distance <= 10)
-        {
-            setHealthbar();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return true;
     }
 
     public override void setHealthbar()
     {
         HealthCanvas.gameObject.SetActive(true);
+        animator.enabled = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            phase++;
+            detect.enabled = false;
+            setHealthbar();
+        }
     }
 }

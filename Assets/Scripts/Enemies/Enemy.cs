@@ -24,7 +24,7 @@ public abstract class Enemy : MonoBehaviour
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool edge;
 
-    // If we're creating a boss, reference HUD instead of creating a local canvas
+    // If we're creating a boss, reference HUD instead of creating a local canvas (we should probably do this in start instead of dragging in)
     public Canvas HealthCanvas;
     public Text BossName;
     public Image hp; // This is the red hp image
