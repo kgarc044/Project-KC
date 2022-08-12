@@ -43,8 +43,9 @@ GameObject:
   - component: {fileID: 3739225245065423979}
   - component: {fileID: -6491280292487793843}
   - component: {fileID: -2192249539474630526}
+  - component: {fileID: -564160898593375872}
   m_Layer: 0
-  m_Name: SawedOffShotty
+  m_Name: SawedShotGun
   m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574156491301855328}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.41374537, w: 0.91039264}
   m_LocalPosition: {x: -4.65, y: 1.797, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -104,7 +105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 5ac1eb62bf733ea449deab4f5291fe32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,16 +135,20 @@ MonoBehaviour:
   ammoMax: 0
   isFlipped: 0
   outOfAmmo: 1
+  gunSpawned: 0
   player: {fileID: 0}
   playerTransform: {fileID: 0}
+  UI: {fileID: 0}
+  playerRB: {fileID: 0}
   cooldownTime: 1
   canShoot: 1
   firePoint: {fileID: 525372039}
   bulletPrefab: {fileID: 3007182461913587438, guid: 80620b2669cb9444ca3d6fe017095c49, type: 3}
   gunCollider: {fileID: -6491280292487793843}
-  bulletCount: 4
-  maxY: 270
-  minY: -270
+  shotgunAnim: {fileID: 0}
+  bulletCount: 5
+  maxY: -270
+  minY: 270
 --- !u!58 &-6491280292487793843
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -181,3 +186,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &-564160898593375872
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574156491301855328}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2daabb55809bd046995904d1b33e339, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
