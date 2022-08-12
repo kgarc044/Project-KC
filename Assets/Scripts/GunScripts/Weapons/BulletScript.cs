@@ -12,13 +12,9 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        Shoot(); 
-    }
-
-    void Shoot()
-    {
         bulletRB.velocity = transform.right * speed;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
