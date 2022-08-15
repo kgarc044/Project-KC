@@ -22,5 +22,10 @@ public class fireball : MonoBehaviour
     {
         Destroy(gameObject);
         //player hit
+        if(col.gameObject.tag == "Player")
+        {
+            PlayerMove p = col.gameObject.GetComponent<PlayerMove>();
+            p.health.Decrease(.1f);
+        }
     }
 }

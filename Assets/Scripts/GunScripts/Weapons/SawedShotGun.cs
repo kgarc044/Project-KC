@@ -13,12 +13,9 @@ public class SawedShotGun : GunBase
     private GameObject bulletPrefab;
     [SerializeField]
     private Collider2D gunCollider;
-    public Animator shotgunAnim;
-
     public int bulletCount;
     public float maxY;
     public float minY;
-
 
     void Update()
     {
@@ -40,24 +37,19 @@ public class SawedShotGun : GunBase
     {
         if (ammoTotal > 0)
         {
-            BulletSpread(minY, maxY);
+            for(int i = 0; i < bulletCount; i++)
+            {
+                GameObject projectileInstance;
+                projectileInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                projectileInstance.GetComponent<Rigidbody2D>().
+                    AddForce(firePoint.up + new Vector3(0f, Random.Range(minY, maxY), 0f));
+            }
             
             ammoTotal--;
         }
         else
         {
             ThrowGun();
-        }
-    }
-
-    public void BulletSpread(float minY, float maxY)
-    {
-        for (int i = 0; i < bulletCount; i++)
-        {
-            GameObject projectileInstance;
-            projectileInstance = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            projectileInstance.GetComponent<Rigidbody2D>().
-            AddForce(-firePoint.up + new Vector3(0f, Random.Range(minY, maxY), 0f));
         }
     }
 
@@ -71,22 +63,12 @@ public class SawedShotGun : GunBase
 
     public override void Special()
     {
-        if (player.mana.ReturnResource() > .1)
+        if (player.mana.ReturnResource() > .4)
         {
-            player.mana.Decrease(.1f);
-            player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 500));
-            this.transform.Rotate(0, 0, -90f);
-            StartCoroutine(SpecialDelay());
-        }
-    }
+             player.mana.Decrease(.4f);
 
-    public IEnumerator SpecialDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        BulletSpread(270, -270);
-        this.transform.Rotate(0, 0, 90f);
+        }/**/
     }
-
 
     public override void ThrowGun()
     {
